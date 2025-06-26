@@ -2,7 +2,7 @@
   <section
     id="skills"
     data-section="skills"
-    class="min-h-screen bg-gradient-to-br from-background-50 to-background-100 dark:from-background-900 dark:to-background-800 py-0"
+    class="min-h-screen bg-gradient-to-br from-background-50 to-background-100 dark:from-background-900 dark:to-background-800 pt-0 pb-2"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10">
       <!-- Section Header -->

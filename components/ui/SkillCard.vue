@@ -3,7 +3,7 @@
     <!-- Card Header with Filter Tabs -->
     <div class="card-header mb-6">
       <!-- Internal Filter Tabs with Horizontal Overflow -->
-      <div class="filter-tabs-container relative">
+      <div class="flex filter-tabs-container relative">
         <!-- Left Arrow -->
         <button
           v-if="showArrows"
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Vertical Bar Graph Grid-->
-    <div class="skills-grid flex justify-center flex-1">
+    <div class="skills-grid flex justify-center items-center flex-1">
       <TransitionGroup name="skill-fade" tag="div" class="flex justify-center items-end gap-4 overflow-x-auto scrollbar-hide pb-2 w-full h-full">
         <div
           v-for="skill in displayedSkills"
