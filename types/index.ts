@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 // Project types
 export interface Project {
   id: string
@@ -161,4 +163,53 @@ export interface SocialLink {
   icon: string
   label: string
   order: number
+}
+
+// Layout component types
+export interface LayoutProps {
+  title?: string
+  description?: string
+  keywords?: string[]
+  image?: string
+  noIndex?: boolean
+  canonical?: string
+}
+
+// Header component types
+export interface HeaderProps {
+  fixed?: boolean
+  transparent?: boolean
+  showLogo?: boolean
+  showActions?: boolean
+}
+
+// Navigation component types
+export interface NavigationProps {
+  sections?: Section[]
+  showMobileNav?: boolean
+  offset?: number
+}
+
+// Footer component types
+export interface FooterProps {
+  showSocial?: boolean
+  showNavigation?: boolean
+  showBackToTop?: boolean
+}
+
+// Error page types
+export interface ErrorPageProps {
+  error: {
+    statusCode: number
+    statusMessage: string
+    message: string
+    stack?: string
+  }
+}
+
+// Scroll composable return type
+export interface UseScrollReturn {
+  activeSection: Ref<string | null>
+  scrollProgress: Ref<number>
+  isScrolling: Ref<boolean>
 } 
