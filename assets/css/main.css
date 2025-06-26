@@ -194,7 +194,7 @@
   
   /* Project card styles */
   .project-card {
-    @apply card-hover overflow-hidden group;
+    @apply card-hover overflow-hidden;
   }
   
   .project-image {

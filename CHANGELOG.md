@@ -2,7 +2,20 @@
 
 ## [0.1.0]
 
-## [2025-01-16]
+## [2025-06-26]
+### [client]
+- **ProjectsSection component**: Filtering system with horizontal carousel and responsive design
+- **ProjectCard component**: Interactive project cards with hover effects and quick action buttons
+- **ProjectModal component**: Detailed project view with image gallery and comprehensive information
+- **Project data management**: Complete project data structure with categorization and status tracking
+- **Filtering**: Filter by category (all, dev, UX, research) with real-time count indicators
+- **Responsive design**: Desktop horizontal scroll with arrows, mobile vertical infinite scroll
+- **Performance optimizations**: Virtual scrolling, lazy loading, and memoized computed properties
+- **Accessibility features**: Keyboard navigation, ARIA labels, and focus management
+- **Image handling**: Placeholder SVG assets and optimized image display
+- **Interactive features**: Project favorites, external link handling, and smooth animations
+
+## [2025-06-16]
 ### [client]
 - Initial Nuxt 3 project setup with TypeScript
 - Tailwind CSS integration and custom configuration

@@ -4,7 +4,7 @@
     <section
       id="home"
       data-section="home"
-      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-background-50 to-background-100 dark:from-background-900 dark:to-background-800"
+      class="h-screen flex items-center justify-center bg-gradient-to-br from-background-50 to-background-100 dark:from-background-900 dark:to-background-800"
     >
       <div class="text-center">
         <h1 class="text-4xl md:text-6xl font-bold text-text-900 dark:text-white mb-4">
@@ -34,38 +34,35 @@
     <section
       id="skills"
       data-section="skills"
-      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-background-50 dark:from-background-900 dark:to-background-950"
+      class="h-screen bg-gradient-to-br from-white to-background-50 dark:from-background-900 dark:to-background-950"
     >
-      <div class="text-center">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white mb-4">
-          Skills & Experience
-        </h2>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <div class="flex justify-start">
+          <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white mb-4">
+            Skills & Experience
+          </h2>
+          <div>
+            <!-- Filter Buttons-->
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section
-      id="projects"
-      data-section="projects"
-      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-background-100 to-background-200 dark:from-background-800 dark:to-background-900"
-    >
-      <div class="text-center">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white mb-4">
-          My Projects
-        </h2>
-      </div>
-    </section>
+    <ProjectsSection />
 
     <!-- Contact Section -->
     <section
       id="contact"
       data-section="contact"
-      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-background-50 to-white dark:from-background-950 dark:to-background-900"
+      class="h-screen bg-gradient-to-br from-background-50 to-white dark:from-background-950 dark:to-background-900"
     >
-      <div class="text-center">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white mb-4">
-          Get In Touch
-        </h2>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <div class="flex justify-start">
+          <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white mb-4">
+            Get In Touch
+          </h2>
+        </div>
         <p class="text-lg text-text-600 dark:text-text-300">
           
         </p>
@@ -79,6 +76,7 @@
 
 <script setup lang="ts">
 import { useHead } from 'nuxt/app'
+import ProjectsSection from '~/components/sections/ProjectsSection.vue'
 
 // SEO and meta tags
 useHead({
