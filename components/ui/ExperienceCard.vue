@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="experience-card group relative bg-white dark:bg-background-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-background-700 opacity-50 hover:opacity-100 min-h-[500px] max-h-[500px] overflow-y-auto"
+    class="experience-card group relative bg-white dark:bg-background-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-background-700 min-h-[500px] max-h-[500px] overflow-y-auto scroll-fade"
     @mouseenter="handleHover(true)"
     @mouseleave="handleHover(false)"
   >
@@ -225,29 +225,7 @@ function handleLogoError() {
   }
 }
 
-/* Custom scrollbar for ExperienceCard */
-.experience-card {
-  scrollbar-width: thin;
-  scrollbar-color: #f472b6 #e5e5e5;
-}
 
-.experience-card::-webkit-scrollbar {
-  width: 6px;
-}
-
-.experience-card::-webkit-scrollbar-track {
-  background: #e5e5e5;
-  border-radius: 3px;
-}
-
-.experience-card::-webkit-scrollbar-thumb {
-  background: #f472b6;
-  border-radius: 3px;
-}
-
-.experience-card::-webkit-scrollbar-thumb:hover {
-  background: #FB0078;
-}
 
 /* Responsive adjustments for min-height */
 @media (max-width: 768px) {

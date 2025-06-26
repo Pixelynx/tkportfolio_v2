@@ -2,6 +2,30 @@
 
 ## [0.1.0]
 
+## [2025-01-27]
+### [client]
+- Properly configured Tailwind CSS dark mode with `darkMode: 'class'`
+  - Added global dark mode wrapper in `app.vue` to ensure consistent dark theme application
+  - Cleaned up redundant standalone "dark" classes from all Vue components
+  - Maintained all `dark:` prefixed utility classes for proper dark mode styling
+  - Resolved light mode flash issues with centralized dark mode management
+
+- Custom scroll fade utility for improved UX
+  - Added `.scroll-fade` Tailwind utility with 50% opacity default and 100% on hover
+  - Implemented custom scrollbar styling with pink thumb and dark mode aware track colors
+  - Applied to both ExperienceCard and SkillCard components for consistent behavior
+  - Enhanced scrollable areas with smooth transitions and theme-appropriate colors
+
+- Optimized card components for better display and responsiveness
+  - Set consistent `min-height: 500px` for both ExperienceCard and SkillCard components
+  - Added `max-height: 500px` with `overflow-y: auto` for ExperienceCard scroll behavior
+  - Increased skill bar height in SkillCard from 256px to 320px for better visual impact
+  - Implemented responsive min-height adjustments for mobile devices
+
+- Enhanced Tailwind CSS configuration with custom scroll utilities plugin
+- Added scroll-fade utility generation with dark mode variants
+- Improved dark mode color scheme integration across all components
+
 ## [2025-06-26]
 ### [client]
 - **ProjectsSection component**: Filtering system with horizontal carousel and responsive design

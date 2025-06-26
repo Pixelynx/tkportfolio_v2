@@ -1,7 +1,5 @@
 <template>
-  <div 
-    class="skill-card bg-white dark:bg-background-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-background-700 min-h-[500px] max-h-[500px]"
-  >
+  <div class="skills-card bg-white dark:bg-background-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-background-700 min-h-[500px] flex flex-col">
     <!-- Card Header with Filter Tabs -->
     <div class="card-header mb-6">
       <!-- Internal Filter Tabs with Horizontal Overflow -->
@@ -53,7 +51,7 @@
       </div>
     </div>
 
-    <!-- Vertical Bar Graph Grid -->
+    <!-- Vertical Bar Graph Grid-->
     <div class="skills-grid flex justify-center flex-1">
       <TransitionGroup name="skill-fade" tag="div" class="flex justify-center items-end gap-4 overflow-x-auto scrollbar-hide pb-2 w-full h-full">
         <div
@@ -64,7 +62,7 @@
           @mouseleave="handleSkillHover(skill.id, false)"
         >
           <!-- Vertical Bar -->
-          <div class="bar-wrapper relative h-80 w-8 bg-gray-200 dark:bg-background-700 rounded-lg overflow-hidden">
+          <div class="bar-wrapper relative h-64 w-8 bg-gray-200 dark:bg-background-700 rounded-lg overflow-hidden">
             <div 
               class="skill-bar absolute bottom-0 left-0 w-full transition-all duration-500 ease-out rounded-lg"
               :style="{ 
