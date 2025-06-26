@@ -18,18 +18,18 @@ export default defineNuxtConfig({
   // App configuration
   app: {
     head: {
-      title: 'TK Stevens - Frontend Developer Portfolio',
+      title: 'TK Stevens - Fullstack Developer Portfolio',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'TK Stevens - Frontend Developer Portfolio showcasing React, Python, and web development projects' },
+        { name: 'description', content: 'TK Stevens - Fullstack Developer Portfolio showcasing React, Python, and web development projects' },
         { name: 'keywords', content: 'frontend developer, react, vue, javascript, typescript, web development, portfolio' },
         { name: 'author', content: 'TK Stevens' },
-        { property: 'og:title', content: 'TK Stevens - Frontend Developer Portfolio' },
+        { property: 'og:title', content: 'TK Stevens - Fullstack Developer Portfolio' },
         { property: 'og:description', content: 'Frontend Developer Portfolio showcasing React, Python, and web development projects' },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'TK Stevens - Frontend Developer Portfolio' },
+        { name: 'twitter:title', content: 'TK Stevens - Fullstack Developer Portfolio' },
         { name: 'twitter:description', content: 'Frontend Developer Portfolio showcasing React, Python, and web development projects' }
       ],
       link: [

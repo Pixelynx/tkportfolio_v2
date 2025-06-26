@@ -103,7 +103,7 @@ export const PROJECT_CATEGORIES = [
 
 // SEO defaults
 export const SEO_DEFAULTS = {
-  title: 'TK Stevens - Frontend Developer Portfolio',
+  title: 'TK Stevens - Fullstack Developer Portfolio',
   description: 'Frontend Developer Portfolio showcasing React, Python, and modern web development projects',
   keywords: ['frontend developer', 'react', 'vue', 'python', 'javascript', 'typescript', 'web development', 'portfolio'],
   image: '/og-image.jpg',
