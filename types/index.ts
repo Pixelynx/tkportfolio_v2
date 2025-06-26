@@ -61,11 +61,32 @@ export interface ProjectModalState {
 export interface Skill {
   id: string
   name: string
-  category: 'frontend' | 'backend' | 'tools' | 'design'
+  category: 'frontend' | 'backend' | 'testing' | 'tools' | 'libraries' | 'design'
   proficiency: number // 0-100
   icon?: string
+  iconType?: 'svg' | 'image' | 'emoji'
   color?: string
+  description?: string
+  yearsExperience?: number
+  tags?: readonly string[]
+  isHighlighted?: boolean
   order: number
+}
+
+export interface SkillCategory {
+  id: string
+  name: string
+  description?: string
+  icon: string
+  color: string
+  skills?: Skill[]
+  order: number
+}
+
+export interface SkillFilter {
+  category: 'all' | Skill['category']
+  proficiencyMin?: number
+  highlighted?: boolean
 }
 
 // Experience types
@@ -77,10 +98,18 @@ export interface Experience {
   startDate: string
   endDate?: string
   current: boolean
-  description: string[]
-  technologies: string[]
-  achievements: string[]
+  description: readonly string[]
+  technologies: readonly string[]
+  achievements: readonly string[]
+  responsibilities?: readonly string[]
+  companyUrl?: string
+  companyLogo?: string
   order: number
+}
+
+export interface SkillXPFilter {
+  activeView: 'skills' | 'experience'
+  skillCategory?: Skill['category']
 }
 
 // Contact form types

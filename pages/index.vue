@@ -31,22 +31,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section
-      id="skills"
-      data-section="skills"
-      class="h-screen bg-gradient-to-br from-white to-background-50 dark:from-background-900 dark:to-background-950"
-    >
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-        <div class="flex justify-start">
-          <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white mb-4">
-            Skills & Experience
-          </h2>
-          <div>
-            <!-- Filter Buttons-->
-          </div>
-        </div>
-      </div>
-    </section>
+    <SkillXPSection />
 
     <!-- Projects Section -->
     <ProjectsSection />
@@ -59,7 +44,7 @@
     >
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <div class="flex justify-start">
-          <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white mb-4">
+          <h2 class="text-2xl md:text-4xl font-bold text-text-900 dark:text-white mb-4">
             Get In Touch
           </h2>
         </div>
@@ -77,6 +62,7 @@
 <script setup lang="ts">
 import { useHead } from 'nuxt/app'
 import ProjectsSection from '~/components/sections/ProjectsSection.vue'
+import SkillXPSection from '~/components/sections/SkillXPSection.vue'
 
 // SEO and meta tags
 useHead({
