@@ -9,7 +9,7 @@
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
         <!-- Title -->
         <div class="flex justify-start mb-4 lg:mb-0">
-          <h2 class="text-3xl md:text-5xl font-bold text-text-900 dark:text-white">
+          <h2 class="text-2xl md:text-4xl font-bold text-text-900 dark:text-white">
             My Projects
           </h2>
         </div>
