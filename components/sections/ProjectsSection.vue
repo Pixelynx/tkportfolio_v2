@@ -101,11 +101,11 @@
           <!-- Desktop: Horizontal Carousel -->
           <div class="hidden lg:block w-full">
             <!-- Carousel Wrapper with proper overflow control -->
-            <div class="relative w-full px-12">
+            <div class="relative w-full px-8">
               <div class="overflow-hidden w-full">
                 <div
                   ref="carouselContainer"
-                  class="flex transition-transform duration-500 ease-out"
+                  class="flex justify-center transition-transform duration-500 ease-out"
                   :style="{ transform: `translateX(-${currentSlideIndex * slideWidth}px)` }"
                 >
                   <div
@@ -162,10 +162,14 @@
             </div>
           </div>
 
-          <!-- Mobile: Horizontal Scroll -->
-          <div class="lg:hidden w-full">
-            <div class="overflow-x-auto scrollbar-hide">
-              <div class="flex gap-4 pb-4" style="width: max-content;">
+                      <!-- Mobile: Horizontal Scroll -->
+            <div class="lg:hidden w-full">
+              <div class="overflow-x-auto scrollbar-hide">
+                <div 
+                  class="flex gap-4 pb-4" 
+                  :class="carouselFlexClasses"
+                  :style="carouselFlexStyle"
+                >
                 <div
                   v-for="project in filteredProjects"
                   :key="project.id"
@@ -403,6 +407,23 @@ const handleKeydown = (event: KeyboardEvent) => {
       break
   }
 }
+
+// Carousel Dynamic Positioning
+const carouselFlexClasses = computed(() => {
+  if (filteredProjects.value.length === 1) {
+    return 'justify-center w-full';
+  } else {
+    return 'justify-start';
+  }
+});
+
+const carouselFlexStyle = computed(() => {
+  // Only apply max-content width if there are multiple projects
+  if (filteredProjects.value.length > 1) {
+    return { width: 'max-content' };
+  }
+  return {}; // Let w-full handle the width when there's only one
+});
 
 // Lifecycle
 onMounted(() => {

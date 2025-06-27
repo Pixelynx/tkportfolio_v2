@@ -2,7 +2,7 @@
   <Teleport to="body">
     <div
       v-if="project"
-      class="fixed inset-0 z-50 overflow-hidden"
+      class="dark fixed inset-0 z-50 overflow-hidden"
       role="dialog"
       aria-modal="true"
       :aria-labelledby="`modal-title-${project.id}`"
@@ -15,7 +15,7 @@
       ></div>
 
       <!-- Modal Container -->
-      <div class="relative flex items-center justify-center min-h-screen p-4">
+      <div class="relative flex items-center justify-center min-h-screen p-4" @click="$emit('close')">
         <div
           class="relative w-full max-w-6xl max-h-[90vh] bg-white dark:bg-surface-900 rounded-2xl shadow-2xl overflow-hidden animate-scale-in"
           @click.stop
@@ -136,12 +136,12 @@
                         <span class="w-2 h-2 rounded-full mr-2" :class="statusDotColor"></span>
                         {{ formatStatus(project.status) }}
                       </span>
-                      <span
+                      <!-- <span
                         v-if="project.featured"
                         class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-500 text-white"
                       >
                         ⭐ Featured
-                      </span>
+                      </span> -->
                     </div>
                   </div>
 
