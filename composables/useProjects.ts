@@ -6,18 +6,18 @@ import type { Project, ProjectFilter, ProjectModalState } from '~/types'
 const MOCK_PROJECTS: Project[] = [
   {
     id: 'resumate',
-    title: 'Resumate',
-    description: 'AI-powered job matching platform that analyzes resumes against job descriptions to provide compatibility scores and improvement suggestions.',
+    title: 'ResuMate',
+    description: 'AI-powered resume and cover letter creation platform that combines intelligent document generation with job fit analysis to help job seekers create tailored application materials and improve their interview chances.',
     shortDescription: 'AI job matching platform with resume analysis',
     category: 'dev',
     status: 'in-progress',
     featured: true,
-    technologies: ['React.js', 'Node.js', 'Express', 'PostgreSQL', 'OpenAI'],
+    technologies: ['React.js', 'Redux', 'PostgreSQL', 'TypeScript', 'Node.js', 'Express', 'Sequelize', 'OpenAI', 'Material UI'],
     images: [
       {
         id: 'res-hero',
         url: '/images/placeholder-project.svg',
-        alt: 'Resumate Dashboard',
+        alt: 'ResuMate Dashboard',
         type: 'hero',
         width: 800,
         height: 600
@@ -42,41 +42,39 @@ const MOCK_PROJECTS: Project[] = [
     links: [
       {
         type: 'demo',
-        url: 'https://Resumate-demo.com',
+        url: 'https://resumate-ai.netlify.app',
         label: 'Demo',
-        icon: '🚀' // temp
+
       },
       {
         type: 'code',
-        url: 'https://github.com/tkstevens/Resumate',
-        label: 'GitHub',
-        icon: '💻' // temp
+        url: 'https://github.com/pixelynx/Resumate',
+        label: 'GitHub'
       }
     ],
     details: {
-      overview: 'Resumate revolutionizes job searching by using AI to analyze resume compatibility with job descriptions, providing actionable insights for career advancement.',
+      overview: 'ResuMate streamlines the job application process by offering an intuitive resume builder, AI-powered cover letter generation, and sophisticated job fit scoring using OpenAI embeddings to provide personalized feedback and improvement suggestions.',
       challenges: [
-        'Processing complex job descriptions with varying formats',
-        'Accurately scoring resume compatibility',
-        'Providing meaningful improvement suggestions'
+        'Implementing accurate semantic similarity between resumes and job descriptions',
+        'Creating balanced scoring with proper penalty systems for mismatches',
+        'Designing effective AI prompts for personalized cover letter generation'
       ],
       solutions: [
-        'Implemented NLP models for text analysis',
-        'Created weighted scoring algorithm',
-        'Built intelligent recommendation engine'
+        "Utilized OpenAI's text-embedding-ada-002 for semantic analysis with cosine similarity",
+        'Developed weighted component scoring with technical and experience mismatch penalties',
+        'Implemented context-aware content generation with tone and focus customization'
       ],
-      architecture: 'Microservices architecture with React frontend, Express backend, and PostgreSQL database',
+      architecture: 'Full-stack web application with React/TypeScript frontend, Express.js backend, PostgreSQL database, and OpenAI API integration for AI-powered features',
       features: [
-        'AI-powered compatibility scoring',
-        'Resume optimization suggestions',
-        'Job description analysis',
-        'Skills gap identification',
-        'Career progression tracking'
+        'Multi-step resume builder with real-time preview',
+        'AI-powered cover letter generation with customizable tone',
+        'Job fit scoring using OpenAI text embeddings',
+        'Component-based compatibility analysis (skills, experience, education)',
+        'Professional document printing and export'
       ],
       lessons: [
-        'Advanced machine learning implementation',
-        'Large-scale data processing',
-        'User experience optimization'
+        'Advanced integration of AI embeddings for document analysis',
+        'Balancing AI automation with user control in document generation'
       ]
     },
     dateCreated: '2024-01-15',
@@ -86,12 +84,12 @@ const MOCK_PROJECTS: Project[] = [
   {
     id: 'spotivibe',
     title: 'SpotiVibe',
-    description: 'Intelligent resume builder with ATS optimization, real-time collaboration, and industry-specific templates.',
-    shortDescription: 'Smart resume builder with ATS optimization',
+    description: "Music discovery platform that combines Spotify's catalog with natural language processing to help users find songs matching specific vibes and calculate artist discography durations through intelligent lyric analysis.",
+    shortDescription: 'Music discovery through AI lyric analysis',
     category: 'dev',
     status: 'in-progress',
     featured: true,
-    technologies: ['React.js', 'Python', 'Spotipy API', 'Genius API', 'NLP'],
+    technologies: ['Python', 'React.js', 'OAuth', 'Spotipy API', 'Genius API', 'DeBERTa NLP Model', 'JavaScript'],
     images: [
       {
         id: 'spot-home',
@@ -115,28 +113,36 @@ const MOCK_PROJECTS: Project[] = [
         type: 'demo',
         url: 'https://SpotiVibe-app.com',
         label: 'Demo',
-        icon: '📝' // temp
+
       },
       {
         type: 'code',
-        url: 'https://github.com/tkstevens/SpotiVibe',
-        label: 'GitHub',
-        icon: '💻' // temp
+        url: 'https://github.com/pixelynx/SpotiVibe',
+        label: 'GitHub'
       }
     ],
     details: {
-      overview: 'SpotiVibe allows for users to find songs based off searching for a phrase expressing a vibe.',
+      overview: 'SpotiVibe enhances music discovery by offering vibe-based song search through lyric analysis and comprehensive artist catalog duration calculation, providing users with personalized music exploration based on emotional context and mood.',
       challenges: [
-        'Placeholder'
+        'Implementing accurate lyrical emotion analysis beyond simple word matching',
+        'Managing excessive load times from multiple sequential API calls',
+        'Creating effective vibe interpretation from user input phrases',
+        'Handling rate limits across multiple external APIs (Spotify & Genius)',
       ],
       solutions: [
-        'Placeholder'
+        'TBD'
       ],
       features: [
-        'Placeholder'
+        'Intelligent vibe search with natural language processing',
+        'Artist catalog duration calculator with complete discography analysis',
+        'Flexible search filters (vibe, artist)',
+        'Spotify OAuth integration for secure authentication',
+        'Responsive design with modern UI/UX principles',
+        'Paginated search results for optimal performance',
       ],
       lessons: [
-        'Placeholder'
+        'Advanced integration of multiple music APIs with authentication flows',
+        'Natural language processing limitations in emotion detection from lyrics',
       ]
     },
     dateCreated: '2023-08-10',
@@ -167,28 +173,28 @@ const MOCK_PROJECTS: Project[] = [
         type: 'design',
         url: 'https://figma.com/ecommerce-redesign',
         label: 'Designs',
-        icon: '🎨' // temp
+
       },
       {
         type: 'research',
         url: '/research/ecommerce-ux-study.pdf',
         label: 'Research',
-        icon: '📊' // temp
+
       }
     ],
     details: {
-      overview: 'Implementing UX redesign of PFN platform.',
+      overview: 'TBD',
       challenges: [
-        'Placeholder',
+        'TBD',
       ],
       solutions: [
-        'Placeholder',
+        'TBD',
       ],
       features: [
-        'Placeholder',
+        'TBD',
       ],
       lessons: [
-        'Placeholder',
+        'TBD',
       ]
     },
     dateCreated: '2023-05-01',
@@ -315,11 +321,11 @@ export const useProjects = () => {
 
   const getCategoryIcon = (category: Project['category']) => {
     const categoryIcons = {
-      dev: '💻', // temp
-      ux: '🎨', // temp
-      research: '📊' // temp
+      dev: '/assets/img/icons/svg/browser-code-solid-svgrepo-com.svg',
+      ux: '/assets/img/icons/svg/design-ideas-svgrepo-com.svg',
+      research: '/assets/img/icons/svg/office-search-research-svgrepo-com.svg'
     }
-    return categoryIcons[category] || '📁'
+    return categoryIcons[category] || '/assets/img/icons/svg/code-square-filled-svgrepo-com.svg'
   }
 
   const getCategoryLabel = (category: Project['category']) => {
