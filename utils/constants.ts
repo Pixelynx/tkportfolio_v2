@@ -326,7 +326,6 @@ export const SKILL_CATEGORIES = [
     id: 'all',
     name: 'All Skills',
     description: 'Complete technical skill set',
-    icon: '🚀',
     color: '#6366F1',
     order: 0
   },
@@ -334,7 +333,6 @@ export const SKILL_CATEGORIES = [
     id: 'frontend',
     name: 'Frontend',
     description: 'User interface and experience',
-    icon: '🌐',
     color: '#3B82F6',
     order: 1
   },
@@ -342,7 +340,6 @@ export const SKILL_CATEGORIES = [
     id: 'backend',
     name: 'Backend',
     description: 'Server-side development',
-    icon: '⚙️',
     color: '#10B981',
     order: 2
   },
@@ -350,7 +347,6 @@ export const SKILL_CATEGORIES = [
     id: 'libraries',
     name: 'Libraries',
     description: 'Frameworks and libraries',
-    icon: '📚',
     color: '#8B5CF6',
     order: 3
   },
@@ -358,7 +354,6 @@ export const SKILL_CATEGORIES = [
     id: 'tools',
     name: 'Dev Tools',
     description: 'Development tools and workflows',
-    icon: '🔧',
     color: '#F59E0B',
     order: 4
   },
@@ -366,7 +361,6 @@ export const SKILL_CATEGORIES = [
     id: 'testing',
     name: 'Testing',
     description: 'Quality assurance and testing',
-    icon: '🧪',
     color: '#EF4444',
     order: 5
   },
@@ -374,7 +368,6 @@ export const SKILL_CATEGORIES = [
     id: 'design',
     name: 'UX/Design',
     description: 'Design and user experience',
-    icon: '🎨',
     color: '#EC4899',
     order: 6
   }

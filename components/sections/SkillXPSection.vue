@@ -1,39 +1,41 @@
 <template>
-  <section
-    id="skills"
-    data-section="skills"
-    class="min-h-screen bg-gradient-to-br from-background-50 to-background-100 dark:from-background-900 dark:to-background-800 pt-0 pb-2"
-  >
+  <section id="skills" data-section="skills"
+    class="min-h-screen bg-gradient-to-br from-background-50 to-background-100 dark:from-background-900 dark:to-background-800 pt-0 pb-2">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-      <!-- Section Header -->
+      <!-- Header with Filters -->
+      <div class="flex items-center justify-between mb-8">
+        <!-- Title -->
         <div class="flex justify-start">
-          <h2 class="text-2xl md:text-4xl font-bold text-text-900 dark:text-white mb-4">
+          <h2 class="text-2xl md:text-4xl font-bold text-text-900 dark:text-white">
             Skills & Experience
           </h2>
-      </div>
+        </div>
 
-      <!-- Mobile Filter Buttons -->
-      <div class="lg:hidden mb-8">
-        <div class="flex justify-center space-x-4">
-          <button
-            @click="setActiveView('experience')"
-            class="mobile-filter-btn"
-            :class="getMobileFilterClass('experience')"
-            aria-label="Show experience"
-          >
-            <span class="text-2xl mb-1">💼</span>
-            <span class="text-sm font-medium">Experience</span>
-          </button>
-          
-          <button
-            @click="setActiveView('skills')"
-            class="mobile-filter-btn"
-            :class="getMobileFilterClass('skills')"
-            aria-label="Show skills"
-          >
-            <span class="text-2xl mb-1">⚡</span>
-            <span class="text-sm font-medium">Skills</span>
-          </button>
+        <!-- Filter Buttons - Mobile -->
+        <div class="lg:hidden flex items-center">
+          <div class="flex space-x-2">
+            <button
+              @click="setActiveView('experience')"
+              type="button"
+              class="mobile-filter-button"
+              :class="getMobileFilterButtonClass('experience')"
+              aria-label="Show experience"
+              :aria-pressed="activeView === 'experience'"
+            >
+              <span class="text-sm" aria-hidden="true">💼</span>
+            </button>
+
+            <button
+              @click="setActiveView('skills')"
+              type="button"
+              class="mobile-filter-button"
+              :class="getMobileFilterButtonClass('skills')"
+              aria-label="Show skills"
+              :aria-pressed="activeView === 'skills'"
+            >
+              <span class="text-sm" aria-hidden="true">⚡</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -77,21 +79,8 @@
         <!-- Experience View -->
         <div v-if="activeView === 'experience'" class="mobile-experience">
           <h3 class="text-2xl font-bold text-text-900 dark:text-white mb-6 flex items-center">
-            <span class="text-3xl mr-3">💼</span>
             Professional Experience
           </h3>
-          
-          <!-- Mobile Experience Stats -->
-          <div class="stats-row flex justify-center space-x-6 mb-8">
-            <div class="stat-item bg-white dark:bg-background-800 rounded-lg p-4 shadow-md text-center">
-              <div class="text-2xl font-bold text-primary-600">{{ totalYearsExperience }}+</div>
-              <div class="text-sm text-text-600 dark:text-text-400">Years Experience</div>
-            </div>
-            <div class="stat-item bg-white dark:bg-background-800 rounded-lg p-4 shadow-md text-center">
-              <div class="text-2xl font-bold text-primary-600">{{ experiences.length }}</div>
-              <div class="text-sm text-text-600 dark:text-text-400">Professional Roles</div>
-            </div>
-          </div>
 
           <!-- Mobile Experience Cards -->
           <div class="space-y-6">
@@ -106,7 +95,6 @@
         <!-- Skills View -->
         <div v-else class="mobile-skills">
           <h3 class="text-2xl font-bold text-text-900 dark:text-white mb-6 flex items-center">
-            <span class="text-3xl mr-3">⚡</span>
             Technical Skills
           </h3>
 
@@ -130,9 +118,7 @@ import SkillCard from '~/components/ui/SkillCard.vue'
 import ExperienceCard from '~/components/ui/ExperienceCard.vue'
 
 const {
-  experiences,
   sortedExperiences,
-  totalYearsExperience,
   loadExperiences
 } = useExperience()
 
@@ -144,12 +130,14 @@ function setActiveView(view: 'skills' | 'experience') {
   activeView.value = view
 }
 
-function getMobileFilterClass(view: 'skills' | 'experience') {
-  const baseClass = 'flex flex-col items-center px-6 py-4 rounded-xl transition-all duration-300'
-  const activeClass = 'bg-primary-600 text-white shadow-lg'
-  const inactiveClass = 'bg-white dark:bg-background-800 text-text-600 dark:text-text-400 hover:bg-primary-100 dark:hover:bg-primary-900'
-  
-  return `${baseClass} ${activeView.value === view ? activeClass : inactiveClass}`
+function getMobileFilterButtonClass(view: 'skills' | 'experience') {
+  const isActive = activeView.value === view
+  return [
+    'relative flex items-center justify-center w-10 h-10 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500',
+    isActive
+      ? 'bg-primary-600 text-white border-primary-600 shadow-md'
+      : 'bg-white dark:bg-surface-800 text-text-700 dark:text-text-300 border-border-surface-300 dark:border-border-surface-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-300 dark:hover:border-primary-600'
+  ]
 }
 
 // Lifecycle
@@ -159,9 +147,8 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* Mobile filter buttons */
-.mobile-filter-btn {
-  @apply flex flex-col items-center px-6 py-4 rounded-xl transition-all duration-300 min-w-[120px];
+.mobile-filter-button {
+  flex-shrink: 0;
 }
 
 /* Custom scrollbar */
@@ -188,22 +175,9 @@ onMounted(async () => {
   background: #FB0078;
 }
 
-/* Responsive improvements */
-@media (max-width: 640px) {
-  .stats-row {
-    @apply flex-col space-x-0 space-y-4;
-  }
-}
-
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-  .mobile-filter-btn {
-    transition: none !important;
-  }
-}
-
 /* Focus styles */
-.mobile-filter-btn:focus {
-  @apply ring-2 ring-primary-500 ring-opacity-50 outline-none;
+.mobile-filter-button:focus {
+  outline: 2px solid theme('colors.primary.500');
+  outline-offset: 2px;
 }
-</style> 
+</style>
