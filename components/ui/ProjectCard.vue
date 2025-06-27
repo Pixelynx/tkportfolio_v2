@@ -1,6 +1,6 @@
 <template>
   <article
-    class="project-card group relative bg-white dark:bg-surface-800 rounded-2xl shadow-soft hover:shadow-large transition-all duration-500 overflow-hidden border border-border-surface-200 dark:border-border-surface-700 hover:border-primary-300 dark:hover:border-primary-600"
+    class="project-card group relative bg-white dark:bg-surface-800 rounded-2xl shadow-soft hover:shadow-large transition-all duration-500 overflow-hidden border border-border-surface-200 dark:border-border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 flex flex-col"
     :class="cardClasses"
     @click="handleCardClick"
     @keydown.enter="handleCardClick"
@@ -42,51 +42,53 @@
       </div>
 
       <!-- Featured Badge -->
-      <div
+      <!-- <div
         v-if="project.featured"
         class="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg"
       >
         ⭐ Featured
-      </div>
+      </div> -->
     </div>
 
     <!-- Content -->
-    <div class="p-6">
-      <!-- Header -->
-      <div class="flex items-start justify-between mb-3">
-        <h3 class="text-xl font-bold text-text-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300 line-clamp-1">
-          {{ project.title }}
-        </h3>
-        <button
-          type="button"
-          class="ml-2 p-1 rounded-full text-text-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
-          @click.stop="$emit('favorite', project)"
-          :aria-label="`Add ${project.title} to favorites`"
-        >
-          <span class="text-lg">🤍</span>
-        </button>
-      </div>
+    <div class="p-6 flex-1 flex flex-col">
+      <!-- Main Content (grows to fill space) -->
+      <div class="flex-1">
+        <!-- Header -->
+        <div class="flex items-start justify-between mb-3">
+          <h3 class="text-xl font-bold text-text-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300 line-clamp-1">
+            {{ project.title }}
+          </h3>
+          <button
+            type="button"
+            class="ml-2 p-1 rounded-full text-text-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            @click.stop="$emit('favorite', project)"
+            :aria-label="`Add ${project.title} to favorites`"
+          >
+          </button>
+        </div>
 
-      <!-- Description -->
-      <p class="text-text-600 dark:text-text-300 text-sm mb-4 line-clamp-2 leading-relaxed">
-        {{ project.shortDescription }}
-      </p>
+        <!-- Description -->
+        <p class="text-text-600 dark:text-text-300 text-sm mb-4 line-clamp-2 leading-relaxed">
+          {{ project.shortDescription }}
+        </p>
 
-      <!-- Technologies -->
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span
-          v-for="tech in displayTechnologies"
-          :key="tech"
-          class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-surface-100 dark:bg-surface-700 text-text-700 dark:text-text-300 border border-border-surface-300 dark:border-border-surface-600"
-        >
-          {{ tech }}
-        </span>
-        <span
-          v-if="project.technologies.length > (maxTechnologies || 3)"
-          class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 border border-border-primary-200 dark:border-border-primary-800"
-        >
-          +{{ project.technologies.length - (maxTechnologies || 3) }} more
-        </span>
+        <!-- Technologies -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span
+            v-for="tech in displayTechnologies"
+            :key="tech"
+            class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-surface-100 dark:bg-surface-700 text-text-700 dark:text-text-300 border border-border-surface-300 dark:border-border-surface-600"
+          >
+            {{ tech }}
+          </span>
+          <span
+            v-if="project.technologies.length > (maxTechnologies || 3)"
+            class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 border border-border-primary-200 dark:border-border-primary-800"
+          >
+            +{{ project.technologies.length - (maxTechnologies || 3) }} more
+          </span>
+        </div>
       </div>
 
       <!-- Actions -->
@@ -108,6 +110,7 @@
 
         <!-- Details Button -->
         <button
+          v-if="!compact"
           type="button"
           class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 border border-border-primary-200 dark:border-border-primary-800 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
           @click.stop="$emit('details', project)"
@@ -172,8 +175,8 @@ const cardClasses = computed(() => [
   {
     'hover:-translate-y-1 cursor-pointer': !props.loading,
     'opacity-75 pointer-events-none': props.loading,
-    'h-80': props.compact,
-    'h-96': !props.compact
+    'h-[28rem]': props.compact,
+    'h-[26rem]': !props.compact
   }
 ])
 

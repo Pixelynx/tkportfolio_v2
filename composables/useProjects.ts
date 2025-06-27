@@ -35,7 +35,7 @@ const MOCK_PROJECTS: Project[] = [
       {
         type: 'demo',
         url: 'https://jobfitscore-demo.com',
-        label: 'Live Demo',
+        label: 'Demo',
         icon: '🚀' // temp
       },
       {
@@ -106,13 +106,13 @@ const MOCK_PROJECTS: Project[] = [
       {
         type: 'demo',
         url: 'https://resumate-app.com',
-        label: 'Try Resumate',
+        label: 'Site',
         icon: '📝' // temp
       },
       {
         type: 'code',
         url: 'https://github.com/tkstevens/resumate',
-        label: 'Source Code',
+        label: 'GitHub',
         icon: '💻' // temp
       }
     ],
@@ -148,8 +148,8 @@ const MOCK_PROJECTS: Project[] = [
   {
     id: 'ux-ecommerce',
     title: 'E-commerce UX Redesign',
-    description: 'Complete UX overhaul of a major e-commerce platform, increasing conversion rates by 34% through user-centered design principles.',
-    shortDescription: 'E-commerce platform UX redesign with 34% conversion increase',
+    description: 'Complete UX overhaul of a major e-commerce platform.',
+    shortDescription: 'E-commerce platform UX redesign',
     category: 'ux',
     status: 'completed',
     featured: true,
@@ -168,13 +168,13 @@ const MOCK_PROJECTS: Project[] = [
       {
         type: 'design',
         url: 'https://figma.com/ecommerce-redesign',
-        label: 'Design Files',
+        label: 'Designs',
         icon: '🎨' // temp
       },
       {
         type: 'research',
         url: '/research/ecommerce-ux-study.pdf',
-        label: 'UX Research',
+        label: 'Research',
         icon: '📊' // temp
       }
     ],

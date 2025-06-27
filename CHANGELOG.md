@@ -2,6 +2,23 @@
 
 ## [0.1.0]
 
+## [2025-01-28]
+### [client]
+- Enhanced mobile user experience with horizontal scrolling
+  - Relocated mobile filter buttons into header container with proper right-alignment and vertical centering
+  - Converted mobile project layout from vertical stacking to horizontal scrolling for consistency with desktop
+  - Removed pagination system and "Load More" functionality in favor of continuous horizontal scroll
+  - Updated mobile card width from 280px to 300px for better content accommodation
+  - Simplified header layout structure using `flex items-center justify-between` across all screen sizes
+
+- Improved card sizing and content layout
+  - Increased mobile card height from 384px to 448px (`h-[28rem]`) to prevent content cutoff
+  - Adjusted desktop card height to 416px (`h-[26rem]`) for optimal proportions
+  - Reduced mobile technology display from 3 to 2 tags with `:max-technologies="2"` for cleaner layout
+  - Removed "Details" button from mobile cards using `v-if="!compact"` for space optimization
+  - Implemented bottom-anchored action buttons with consistent card heights using flex layout
+  - Added flex structure to pin actions to bottom while preserving natural content spacing
+
 ## [2025-01-27]
 ### [client]
 - Properly configured Tailwind CSS dark mode with `darkMode: 'class'`
