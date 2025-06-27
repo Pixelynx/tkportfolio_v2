@@ -5,27 +5,35 @@ import type { Project, ProjectFilter, ProjectModalState } from '~/types'
 // Project data
 const MOCK_PROJECTS: Project[] = [
   {
-    id: 'jobfitscore',
-    title: 'JobFitScore',
+    id: 'resumate',
+    title: 'Resumate',
     description: 'AI-powered job matching platform that analyzes resumes against job descriptions to provide compatibility scores and improvement suggestions.',
     shortDescription: 'AI job matching platform with resume analysis',
     category: 'dev',
-    status: 'completed',
+    status: 'in-progress',
     featured: true,
-    technologies: ['React', 'Python', 'FastAPI', 'TensorFlow', 'PostgreSQL', 'Docker'],
+    technologies: ['React.js', 'Node.js', 'Express', 'PostgreSQL', 'OpenAI'],
     images: [
       {
-        id: 'jfs-hero',
+        id: 'res-hero',
         url: '/images/placeholder-project.svg',
-        alt: 'JobFitScore Dashboard',
+        alt: 'Resumate Dashboard',
         type: 'hero',
         width: 800,
         height: 600
       },
       {
-        id: 'jfs-analysis',
+        id: 'res-builder',
         url: '/images/placeholder-project.svg',
-        alt: 'Resume Analysis View',
+        alt: 'Resume Builder Interface',
+        type: 'gallery',
+        width: 800,
+        height: 600
+      },
+      {
+        id: 'res-jobfit',
+        url: '/images/placeholder-project.svg',
+        alt: 'Resume Job Fit Score',
         type: 'gallery',
         width: 800,
         height: 600
@@ -34,19 +42,19 @@ const MOCK_PROJECTS: Project[] = [
     links: [
       {
         type: 'demo',
-        url: 'https://jobfitscore-demo.com',
+        url: 'https://Resumate-demo.com',
         label: 'Demo',
         icon: '🚀' // temp
       },
       {
         type: 'code',
-        url: 'https://github.com/tkstevens/jobfitscore',
+        url: 'https://github.com/tkstevens/Resumate',
         label: 'GitHub',
         icon: '💻' // temp
       }
     ],
     details: {
-      overview: 'JobFitScore revolutionizes job searching by using AI to analyze resume compatibility with job descriptions, providing actionable insights for career advancement.',
+      overview: 'Resumate revolutionizes job searching by using AI to analyze resume compatibility with job descriptions, providing actionable insights for career advancement.',
       challenges: [
         'Processing complex job descriptions with varying formats',
         'Accurately scoring resume compatibility',
@@ -57,7 +65,7 @@ const MOCK_PROJECTS: Project[] = [
         'Created weighted scoring algorithm',
         'Built intelligent recommendation engine'
       ],
-      architecture: 'Microservices architecture with React frontend, Python backend, and PostgreSQL database',
+      architecture: 'Microservices architecture with React frontend, Express backend, and PostgreSQL database',
       features: [
         'AI-powered compatibility scoring',
         'Resume optimization suggestions',
@@ -72,31 +80,31 @@ const MOCK_PROJECTS: Project[] = [
       ]
     },
     dateCreated: '2024-01-15',
-    dateCompleted: '2024-05-20',
+    dateCompleted: '',
     order: 1
   },
   {
-    id: 'resumate',
-    title: 'Resumate',
+    id: 'spotivibe',
+    title: 'SpotiVibe',
     description: 'Intelligent resume builder with ATS optimization, real-time collaboration, and industry-specific templates.',
     shortDescription: 'Smart resume builder with ATS optimization',
     category: 'dev',
-    status: 'completed',
+    status: 'in-progress',
     featured: true,
-    technologies: ['Vue.js', 'Node.js', 'Express', 'MongoDB', 'Socket.io', 'AWS'],
+    technologies: ['React.js', 'Python', 'Spotipy API', 'Genius API', 'NLP'],
     images: [
       {
-        id: 'res-dashboard',
+        id: 'spot-home',
         url: '/images/placeholder-project.svg',
-        alt: 'Resumate Dashboard',
+        alt: 'SpotiVibe Homepage',
         type: 'hero',
         width: 800,
         height: 600
       },
       {
-        id: 'res-builder',
+        id: 'spot-vibe-result',
         url: '/images/placeholder-project.svg',
-        alt: 'Resume Builder Interface',
+        alt: 'SpotiVibe Vibe Search Results',
         type: 'gallery',
         width: 800,
         height: 600
@@ -105,58 +113,48 @@ const MOCK_PROJECTS: Project[] = [
     links: [
       {
         type: 'demo',
-        url: 'https://resumate-app.com',
-        label: 'Site',
+        url: 'https://SpotiVibe-app.com',
+        label: 'Demo',
         icon: '📝' // temp
       },
       {
         type: 'code',
-        url: 'https://github.com/tkstevens/resumate',
+        url: 'https://github.com/tkstevens/SpotiVibe',
         label: 'GitHub',
         icon: '💻' // temp
       }
     ],
     details: {
-      overview: 'Resumate helps job seekers create ATS-optimized resumes with intelligent suggestions and real-time collaboration features.',
+      overview: 'SpotiVibe allows for users to find songs based off searching for a phrase expressing a vibe.',
       challenges: [
-        'ATS compatibility across different systems',
-        'Real-time collaboration implementation',
-        'Template responsiveness across formats'
+        'Placeholder'
       ],
       solutions: [
-        'Extensive ATS testing and optimization',
-        'WebSocket-based collaboration system',
-        'Flexible CSS-in-JS template engine'
+        'Placeholder'
       ],
       features: [
-        'ATS optimization scoring',
-        'Real-time collaboration',
-        'Industry-specific templates',
-        'Export to multiple formats',
-        'Version control system'
+        'Placeholder'
       ],
       lessons: [
-        'Real-time application architecture',
-        'Document generation systems',
-        'User collaboration patterns'
+        'Placeholder'
       ]
     },
     dateCreated: '2023-08-10',
-    dateCompleted: '2024-01-05',
+    dateCompleted: '',
     order: 2
   },
   {
-    id: 'ux-ecommerce',
-    title: 'E-commerce UX Redesign',
-    description: 'Complete UX overhaul of a major e-commerce platform.',
-    shortDescription: 'E-commerce platform UX redesign',
+    id: 'pfn-ecommerce',
+    title: 'PFN UX Redesign',
+    description: 'Complete UX overhaul of PFN e-commerce platform.',
+    shortDescription: 'PFN platform UX redesign',
     category: 'ux',
-    status: 'completed',
+    status: 'planning',
     featured: true,
-    technologies: ['Figma', 'Adobe XD', 'Principle', 'InVision', 'Hotjar', 'Google Analytics'],
+    technologies: ['Figma', ],
     images: [
       {
-        id: 'ux-before-after',
+        id: 'pfn-before-after',
         url: '/images/placeholder-project.svg',
         alt: 'Before and After Comparison',
         type: 'hero',
@@ -179,7 +177,7 @@ const MOCK_PROJECTS: Project[] = [
       }
     ],
     details: {
-      overview: 'Implemented UX redesign of e-commerce platform.',
+      overview: 'Implementing UX redesign of PFN platform.',
       challenges: [
         'Placeholder',
       ],
@@ -194,7 +192,7 @@ const MOCK_PROJECTS: Project[] = [
       ]
     },
     dateCreated: '2023-05-01',
-    dateCompleted: '2023-09-15',
+    dateCompleted: '',
     order: 3
   },
 ]
@@ -312,7 +310,7 @@ export const useProjects = () => {
       'planning': 'text-primary-600 bg-primary-50 dark:text-primary-400 dark:bg-primary-900/20',
       'archived': 'text-text-500 bg-surface-100 dark:text-text-400 dark:bg-surface-800'
     }
-    return statusColors[status] || statusColors.completed
+    return statusColors[status] || statusColors['in-progress']
   }
 
   const getCategoryIcon = (category: Project['category']) => {
