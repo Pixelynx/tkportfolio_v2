@@ -37,22 +37,7 @@
     <ProjectsSection />
 
     <!-- Contact Section -->
-    <section
-      id="contact"
-      data-section="contact"
-      class="h-screen bg-gradient-to-br from-background-50 to-white dark:from-background-950 dark:to-background-900"
-    >
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-        <div class="flex justify-start">
-          <h2 class="text-2xl md:text-4xl font-bold text-text-900 dark:text-white mb-4">
-            Get In Touch
-          </h2>
-        </div>
-        <p class="text-lg text-text-600 dark:text-text-300">
-          
-        </p>
-      </div>
-    </section>
+    <ContactSection />
 
     <!-- Navigation Component -->
     <TheNavigation :show-mobile-nav="true" />
@@ -63,6 +48,7 @@
 import { useHead } from 'nuxt/app'
 import ProjectsSection from '~/components/sections/ProjectsSection.vue'
 import SkillXPSection from '~/components/sections/SkillXPSection.vue'
+import ContactSection from '~/components/sections/ContactSection.vue'
 
 // SEO and meta tags
 useHead({
