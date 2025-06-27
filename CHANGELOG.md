@@ -4,6 +4,18 @@
 
 ## [2025-01-28]
 ### [client]
+- Enhanced carousel alignment and centering behavior
+  - Implemented dynamic centering logic for mobile carousel using computed properties
+  - Added conditional `justify-center` for single card scenarios to horizontally center lone cards
+  - Applied `justify-start` for multiple card scenarios to maintain natural scrolling behavior
+  - Fixed desktop carousel centering by adding `justify-center` to main flex container
+  - Ensured carousel positioning works harmoniously with existing `translateX` transforms
+
+- Dark mode support and improved user interaction
+  - Added `dark` class to modal root container to ensure proper dark mode inheritance
+  - Fixed dark mode styling issues caused by `Teleport to="body"` escaping app context
+  - Implemented click-outside-to-close functionality on modal container layer
+
 - Professional contact interface with 2x2 button grid layout
   - Implemented responsive contact buttons for Email, LinkedIn, GitHub, and Twitter
   - Created consistent button spacing with `gap-4` across all screen sizes using CSS Grid
