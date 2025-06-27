@@ -11,7 +11,7 @@
           TK Stevens
         </h1>
         <p class="text-xl md:text-2xl text-text-600 dark:text-text-300 mb-8">
-          Fullstack Engineer specializing in Fullstack Development
+          Fullstack Engineer specializing in Frontend Development
         </p>
         <div class="space-x-4">
           <NuxtLink

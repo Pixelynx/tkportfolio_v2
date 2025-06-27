@@ -31,7 +31,6 @@
             class="filter-tab px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0"
             :class="getTabClass(category.id)"
           >
-            <span class="mr-2">{{ category.icon }}</span>
             {{ category.name }}
           </button>
         </div>
