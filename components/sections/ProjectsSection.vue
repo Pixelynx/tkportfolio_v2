@@ -6,12 +6,36 @@
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 h-full">
       <!-- Header with Filters -->
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+      <div class="flex items-center justify-between mb-8">
         <!-- Title -->
-        <div class="flex justify-start mb-4 lg:mb-0">
+        <div class="flex justify-start">
           <h2 class="text-2xl md:text-4xl font-bold text-text-900 dark:text-white">
             My Projects
           </h2>
+        </div>
+
+        <!-- Filter Buttons - Mobile -->
+        <div class="lg:hidden flex items-center">
+          <div class="flex space-x-2">
+            <button
+              v-for="category in filterCategories"
+              :key="`mobile-${category.value}`"
+              type="button"
+              class="mobile-filter-button"
+              :class="getMobileFilterButtonClass(category.value)"
+              @click="setActiveFilter(category.value)"
+              :aria-label="`Filter projects by ${category.label}`"
+              :aria-pressed="currentFilter.category === category.value"
+            >
+              <span class="text-sm" aria-hidden="true">{{ category.icon }}</span>
+              <span
+                v-if="category.count > 0"
+                class="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-primary-500 rounded-full"
+              >
+                {{ category.count }}
+              </span>
+            </button>
+          </div>
         </div>
 
         <!-- Filter Buttons - Desktop -->
@@ -38,32 +62,8 @@
         </div>
       </div>
 
-      <!-- Filter Buttons - Mobile (Horizontal Scroll) -->
-      <div class="lg:hidden mb-6">
-        <div class="flex overflow-x-auto space-x-3 pb-4 scrollbar-hide">
-          <button
-            v-for="category in filterCategories"
-            :key="`mobile-${category.value}`"
-            type="button"
-            class="filter-button-mobile"
-            :class="getMobileFilterButtonClass(category.value)"
-            @click="setActiveFilter(category.value)"
-            :aria-label="`Filter projects by ${category.label}`"
-            :aria-pressed="currentFilter.category === category.value"
-          >
-            <span class="text-lg mb-1" aria-hidden="true">{{ category.icon }}</span>
-            <span
-              v-if="category.count > 0"
-              class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-primary-500 rounded-full"
-            >
-              {{ category.count }}
-            </span>
-          </button>
-        </div>
-      </div>
-
       <!-- Projects Container -->
-      <div class="relative flex-1 content-center" style="min-height: 85%;">
+      <div class="relative flex-1 content-center py-4" style="min-height: 80%;">
         <!-- Loading State -->
         <div
           v-if="isLoading"
@@ -162,36 +162,28 @@
             </div>
           </div>
 
-          <!-- Mobile: Vertical Scroll -->
+          <!-- Mobile: Horizontal Scroll -->
           <div class="lg:hidden w-full">
-            <div class="grid grid-cols-1 gap-6">
-              <ProjectCard
-                v-for="project in paginatedProjects"
-                :key="project.id"
-                :project="project"
-                :loading="loadingProjectId === project.id"
-                compact
-                @click="handleProjectClick"
-                @details="openProjectModal"
-                @action="handleProjectAction"
-                @favorite="handleFavorite"
-              />
-            </div>
-
-            <!-- Load More Button (Mobile) -->
-            <div
-              v-if="hasMore"
-              class="flex justify-center mt-8"
-            >
-              <button
-                type="button"
-                class="inline-flex items-center px-6 py-3 rounded-lg text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                :disabled="isLoadingMore"
-                @click="loadMore"
-              >
-                <span v-if="isLoadingMore" class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span>
-                {{ isLoadingMore ? 'Loading...' : 'Load More Projects' }}
-              </button>
+            <div class="overflow-x-auto scrollbar-hide">
+              <div class="flex gap-4 pb-4" style="width: max-content;">
+                <div
+                  v-for="project in filteredProjects"
+                  :key="project.id"
+                  class="flex-shrink-0"
+                  style="width: 300px;"
+                >
+                  <ProjectCard
+                    :project="project"
+                    :loading="loadingProjectId === project.id"
+                    compact
+                    :max-technologies="2"
+                    @click="handleProjectClick"
+                    @details="openProjectModal"
+                    @action="handleProjectAction"
+                    @favorite="handleFavorite"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -263,9 +255,6 @@ const carouselContainer = ref<HTMLElement>()
 const currentSlideIndex = ref(0)
 const slideWidth = ref(400)
 const loadingProjectId = ref<string | null>(null)
-const currentPage = ref(1)
-const itemsPerPage = ref(6)
-const isLoadingMore = ref(false)
 
 // Computed
 const filterCategories = computed(() => [
@@ -311,14 +300,7 @@ const canScrollRight = computed(() => {
   return lastVisibleIndex < filteredProjects.value.length - 1
 })
 
-const paginatedProjects = computed(() => {
-  const endIndex = currentPage.value * itemsPerPage.value
-  return filteredProjects.value.slice(0, endIndex)
-})
 
-const hasMore = computed(() => {
-  return paginatedProjects.value.length < filteredProjects.value.length
-})
 
 // Methods
 const updateSlideWidth = () => {
@@ -332,7 +314,6 @@ const updateSlideWidth = () => {
 const setActiveFilter = (category: 'all' | 'dev' | 'ux' | 'research') => {
   setFilter({ category })
   currentSlideIndex.value = 0
-  currentPage.value = 1
 }
 
 const getFilterButtonClass = (category: string) => {
@@ -348,9 +329,9 @@ const getFilterButtonClass = (category: string) => {
 const getMobileFilterButtonClass = (category: string) => {
   const isActive = currentFilter.category === category
   return [
-    'relative flex flex-col items-center justify-center w-20 h-20 rounded-xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500',
+    'relative flex items-center justify-center w-10 h-10 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500',
     isActive
-      ? 'bg-primary-600 text-white border-primary-600 shadow-lg scale-105'
+      ? 'bg-primary-600 text-white border-primary-600 shadow-md'
       : 'bg-white dark:bg-surface-800 text-text-700 dark:text-text-300 border-border-surface-300 dark:border-border-surface-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-300 dark:hover:border-primary-600'
   ]
 }
@@ -378,19 +359,9 @@ const goToSlide = (index: number) => {
   currentSlideIndex.value = Math.max(0, Math.min(totalSlides.value - 1, index))
 }
 
-const loadMore = async () => {
-  if (hasMore.value && !isLoadingMore.value) {
-    isLoadingMore.value = true
-    await new Promise(resolve => setTimeout(resolve, 500))
-    currentPage.value++
-    isLoadingMore.value = false
-  }
-}
-
 const resetFilters = () => {
   resetFilter()
   currentSlideIndex.value = 0
-  currentPage.value = 1
 }
 
 const retryLoad = () => {
@@ -455,7 +426,7 @@ onUnmounted(() => {
   white-space: nowrap;
 }
 
-.filter-button-mobile {
+.mobile-filter-button {
   flex-shrink: 0;
 }
 
