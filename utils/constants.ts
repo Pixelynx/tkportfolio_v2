@@ -384,11 +384,12 @@ export const EXPERIENCE_DATA = [
     endDate: 'April 2024',
     current: false,
     description: [
-      'Assisted in migration projects, updating the team\'s application to the latest company-wide software version',
-      'Managed and optimized data grids, improving UI responsiveness and enhancing data visualization',
-      'Played a pivotal role in integrating Single Sign-On (SSO) functionality into software',
-      'Oversaw biweekly release cycles, streamlining documentation and change requests',
-      'Collaborated with cross-functional teams, ensuring software updates met compliance standards'
+      'Refactored data grid logic by replacing middleware with Redux Thunks',
+      'Implemented intelligent caching and conditional fetch logic in state management',
+      'Managed UI optimization for real-time data display across grids',
+      'Supported migration of application to the latest version of internal company software',
+      'Collaborated cross-functionally to update enterprise-level Single Sign-On (SSO)',
+      'Contributed to release management by overseeing biweekly deployments'
     ],
     responsibilities: [
       'Frontend development and maintenance',
@@ -399,10 +400,11 @@ export const EXPERIENCE_DATA = [
     ],
     technologies: ['React', 'Redux', 'TypeScript', 'Jest', 'BitBucket', 'ServiceNow', 'Jenkins'],
     achievements: [
-      'Reduced legacy code issues by 25% through migration projects',
-      'Improved UI responsiveness for 100K+ institutional traders worldwide',
-      'Enhanced security through SSO functionality integration',
-      'Achieved high on-time deployment rates through process optimization'
+      'Reduced API call complexity and improved load time responsiveness by ~15%',
+      'Decreased redundant API requests and minimized performance bottlenecks',
+      'Improved usability and system reliability for 100K+ institutional users globally',
+      'Ensured seamless integration across modules through component validation',
+      'Enhanced authentication security while aligning with compliance policies'
     ],
     order: 1
   }
