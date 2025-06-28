@@ -45,10 +45,10 @@ export default defineNuxtConfig({
   build: {
     transpile: ['@vueuse/core']
   },
-  // Static Site Generation
-  ssr: false,
+
+  ssr: true,
   
-  // Nitro configuration for server - test prerender
+  // Nitro configuration for static site generation
   nitro: {
     prerender: {
       routes: ['/']
