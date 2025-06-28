@@ -50,13 +50,9 @@ export default defineNuxtConfig({
   
   // Nitro configuration for static site generation
   nitro: {
-    preset: 'netlify',
     prerender: {
-      routes: ['/'],
-      crawlLinks: true
-    },
-    compressPublicAssets: true,
-    minify: true
+      routes: ['/']
+    }
   },
 
   // Runtime configuration
