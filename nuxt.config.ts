@@ -45,14 +45,18 @@ export default defineNuxtConfig({
   build: {
     transpile: ['@vueuse/core']
   },
+
   // Static Site Generation
   ssr: false,
   
   // Ensure all routes are prerendered
   nitro: {
     prerender: {
-      routes: ['/']
-    }
+      routes: ['/'],
+      crawlLinks: false
+    },
+    compressPublicAssets: true,
+    minify: true
   },
 
   // Runtime configuration
