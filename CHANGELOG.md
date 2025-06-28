@@ -2,6 +2,17 @@
 
 ## [0.1.0]
 
+## [2025-06-28]
+### [deployment]
+- Netlify deployment configuration resolved
+  - Updated Node.js version from 18 to 20 for better Nuxt 3 and Netlify compatibility
+  - Using `dist` as publish directory as standard .output/public currently breaks production build
+  - Added `CI = "true"` environment variable for proper CI/CD detection
+  - Configured `failOnError: false` in Nitro prerender to prevent build failures on non-critical errors
+  - Enabled `crawlLinks: true` for automatic route discovery and complete site generation
+  - Disabled experimental payload extraction (`payloadExtraction: false`) for build stability
+  - Set compatibility date to `2024-11-01` for stable feature set
+
 ## [2025-06-27]
 ### [client]
 - Dynamic icon path construction system implementation
