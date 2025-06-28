@@ -45,23 +45,20 @@ export default defineNuxtConfig({
   build: {
     transpile: ['@vueuse/core']
   },
-
   // Static Site Generation
-  ssr: true,
+  ssr: false,
   
   // Ensure all routes are prerendered
   nitro: {
     prerender: {
       routes: ['/']
-    },
-    compressPublicAssets: true,
-    minify: true
+    }
   },
 
   // Runtime configuration
   runtimeConfig: {
     public: {
-      siteUrl: process.env['SITE_URL'] || 'https://your-site-name.netlify.app'
+      siteUrl: process.env['SITE_URL'] || 'https://tjstevens-portfolio.netlify.app/'
     }
   },
 
