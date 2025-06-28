@@ -157,7 +157,7 @@ const props = withDefaults(defineProps<Props>(), {
   loading: false,
   compact: false,
   maxTechnologies: 3,
-  maxLinks: 2
+  maxLinks: 3
 })
 
 const emit = defineEmits<Emits>()

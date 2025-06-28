@@ -39,7 +39,7 @@
                 <img
                   :src="currentImage?.url || '/images/placeholder-project.svg'"
                   :alt="currentImage?.alt || 'Project image'"
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-contain"
                   :width="currentImage?.width || 800"
                   :height="currentImage?.height || 600"
                 />
