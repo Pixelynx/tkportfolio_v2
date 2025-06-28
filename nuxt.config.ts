@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   // Development and compatibility settings
   compatibilityDate: '2025-05-15',
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   
   // Modules
   modules: [
@@ -46,10 +46,13 @@ export default defineNuxtConfig({
     transpile: ['@vueuse/core']
   },
 
+  // Static Site Generation
+  ssr: true,
+
   // Runtime configuration
   runtimeConfig: {
     public: {
-      siteUrl: process.env['SITE_URL'] || 'http://localhost:3000'
+      siteUrl: process.env['SITE_URL'] || 'https://your-site-name.netlify.app'
     }
   },
 

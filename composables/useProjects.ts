@@ -1,8 +1,7 @@
 import { ref, computed, reactive, readonly } from 'vue'
 import type { Project, ProjectFilter, ProjectModalState } from '~/types'
+import { getCategoryIconPath } from '~/config/skills'
 
-// TODO: Update
-// Project data
 const MOCK_PROJECTS: Project[] = [
   {
     id: 'resumate',
@@ -332,12 +331,7 @@ export const useProjects = () => {
   }
 
   const getCategoryIcon = (category: Project['category']) => {
-    const categoryIcons = {
-      dev: '/img/icons/svg/browser-code-solid-svgrepo-com.svg',
-      ux: '/img/icons/svg/design-ideas-svgrepo-com.svg',
-      research: '/img/icons/svg/office-search-research-svgrepo-com.svg'
-    }
-    return categoryIcons[category] || '/img/icons/svg/code-square-filled-svgrepo-com.svg'
+    return getCategoryIconPath(category)
   }
 
   const getCategoryLabel = (category: Project['category']) => {

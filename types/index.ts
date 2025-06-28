@@ -64,6 +64,7 @@ export interface Skill {
   category: 'frontend' | 'backend' | 'testing' | 'tools' | 'libraries' | 'design'
   proficiency: number // 0-100
   icon?: string
+  iconName?: string
   iconType?: 'svg' | 'image' | 'emoji'
   color?: string
   description?: string
