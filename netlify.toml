@@ -7,6 +7,8 @@
   NPM_VERSION = "10"
   NUXT_TELEMETRY_DISABLED = "1"
   NODE_ENV = "production"
+  NODE_OPTIONS = "--max-old-space-size=3072"
+  SITE_URL = "https://tjstevens-portfolio.netlify.app/"
 
 [[redirects]]
   from = "/*"
