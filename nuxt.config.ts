@@ -51,7 +51,7 @@ export default defineNuxtConfig({
   // Nitro configuration for static site generation 
   nitro: {
     output: {
-      dir: 'dist'
+      dir: 'dist/public'
   } ,
     prerender: {
       routes: ['/'],
