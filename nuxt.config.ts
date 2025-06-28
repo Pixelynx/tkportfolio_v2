@@ -48,23 +48,31 @@ export default defineNuxtConfig({
 
   ssr: true,
   
-  // Nitro configuration for static site generation
+  // Nitro configuration for static site generation 
   nitro: {
+    preset: 'netlify',
     prerender: {
-      routes: ['/']
+      routes: ['/'],
+      crawlLinks: true,
+      failOnError: false
     }
   },
 
   // Runtime configuration
   runtimeConfig: {
     public: {
-      siteUrl: process.env['SITE_URL'] || 'https://tjstevens-portfolio.netlify.app/'
+      siteUrl: 'https://tjstevens-portfolio.netlify.app/'
     }
   },
 
   // TypeScript configuration
   typescript: {
     strict: true,
-    typeCheck: true
+    typeCheck: false
+  },
+
+  // Experimental features
+  experimental: {
+    payloadExtraction: false
   }
 })

@@ -2,14 +2,10 @@
   "name": "tk-portfolio",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  },
   "scripts": {
-    "build": "nuxt build",
+    "build:debug": "nuxt generate --verbose || (echo 'Generate failed, trying build instead' && nuxt build --preset=static && echo 'Contents of .output:' && ls -la .output || echo 'No .output directory')",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate --verbose",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
