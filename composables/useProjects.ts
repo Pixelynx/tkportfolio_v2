@@ -16,7 +16,7 @@ const MOCK_PROJECTS: Project[] = [
     images: [
       {
         id: 'res-hero',
-        url: '/images/placeholder-project.svg',
+        url: '/img/proj/resumate/ui/dash-cropped-v2.jpg',
         alt: 'ResuMate Dashboard',
         type: 'hero',
         width: 800,
@@ -24,7 +24,7 @@ const MOCK_PROJECTS: Project[] = [
       },
       {
         id: 'res-builder',
-        url: '/images/placeholder-project.svg',
+        url: '/img/proj/resumate/ui/resume-build-v2.jpg',
         alt: 'Resume Builder Interface',
         type: 'gallery',
         width: 800,
@@ -32,7 +32,7 @@ const MOCK_PROJECTS: Project[] = [
       },
       {
         id: 'res-jobfit',
-        url: '/images/placeholder-project.svg',
+        url: '/img/proj/resumate/ui/mobile-job-fit-v2.jpg',
         alt: 'Resume Job Fit Score',
         type: 'gallery',
         width: 800,
@@ -43,13 +43,17 @@ const MOCK_PROJECTS: Project[] = [
       {
         type: 'demo',
         url: 'https://resumate-ai.netlify.app',
-        label: 'Demo',
-
+        label: 'Demo'
       },
       {
         type: 'code',
         url: 'https://github.com/pixelynx/Resumate',
         label: 'GitHub'
+      },
+      {
+        type: 'design',
+        url: 'https://github.com/Pixelynx/ResuMate/blob/main/docs/demo.md',
+        label: 'Designs'
       }
     ],
     details: {
@@ -77,7 +81,7 @@ const MOCK_PROJECTS: Project[] = [
         'Balancing AI automation with user control in document generation'
       ]
     },
-    dateCreated: '2024-01-15',
+    dateCreated: '2025-02-27',
     dateCompleted: '',
     order: 1
   },
@@ -93,28 +97,22 @@ const MOCK_PROJECTS: Project[] = [
     images: [
       {
         id: 'spot-home',
-        url: '/images/placeholder-project.svg',
+        url: '/img/proj/spotivibe/ui/HOME-mic-laptop-bg-v2.png',
         alt: 'SpotiVibe Homepage',
         type: 'hero',
         width: 800,
         height: 600
       },
-      {
-        id: 'spot-vibe-result',
-        url: '/images/placeholder-project.svg',
-        alt: 'SpotiVibe Vibe Search Results',
-        type: 'gallery',
-        width: 800,
-        height: 600
-      }
+      // {
+      //   id: 'spot-vibe-result',
+      //   url: '/images/placeholder-project.svg',
+      //   alt: 'SpotiVibe Vibe Search Results',
+      //   type: 'gallery',
+      //   width: 800,
+      //   height: 600
+      // }
     ],
     links: [
-      {
-        type: 'demo',
-        url: 'https://SpotiVibe-app.com',
-        label: 'Demo',
-
-      },
       {
         type: 'code',
         url: 'https://github.com/pixelynx/SpotiVibe',
@@ -145,14 +143,14 @@ const MOCK_PROJECTS: Project[] = [
         'Natural language processing limitations in emotion detection from lyrics',
       ]
     },
-    dateCreated: '2023-08-10',
+    dateCreated: '2024-07-10',
     dateCompleted: '',
     order: 2
   },
   {
     id: 'pfn-ecommerce',
     title: 'PFN UX Redesign',
-    description: 'Complete UX overhaul of PFN e-commerce platform.',
+    description: "Hey there! I'm currently planning a fresh redesign for a press-on nail e-commerce site. My goal is to make finding and buying those perfect nails a super smooth and enjoyable experience. This project is just getting started, so check back soon for updates! In the meantime, you can dive into my early explorations, wireframes, and user flows through the links below if you're curious to see the BTS.",
     shortDescription: 'PFN platform UX redesign',
     category: 'ux',
     status: 'planning',
@@ -160,10 +158,26 @@ const MOCK_PROJECTS: Project[] = [
     technologies: ['Figma', ],
     images: [
       {
-        id: 'pfn-before-after',
-        url: '/images/placeholder-project.svg',
-        alt: 'Before and After Comparison',
+        id: 'pfn-try-on-design',
+        url: '/img/proj/pfn/Wireframes/Mobile/hi-fi/try-on-main-select-design-v1.png',
+        alt: 'AR Nail Try On',
         type: 'hero',
+        width: 800,
+        height: 600
+      },
+      {
+        id: 'pfn-try-finger',
+        url: '/img/proj/pfn/Wireframes/Mobile/hi-fi/try-on-main-finger-expand-v1.png',
+        alt: 'Finger Select Expanded',
+        type: 'gallery',
+        width: 800,
+        height: 600
+      },
+      {
+        id: 'pfn-try-color',
+        url: '/img/proj/pfn/Wireframes/Mobile/hi-fi/try-on-main-select-color-v1.png',
+        alt: 'Try On Color Select',
+        type: 'gallery',
         width: 800,
         height: 600
       }
@@ -172,14 +186,12 @@ const MOCK_PROJECTS: Project[] = [
       {
         type: 'design',
         url: 'https://figma.com/ecommerce-redesign',
-        label: 'Designs',
-
+        label: 'Designs'
       },
       {
         type: 'research',
         url: '/research/ecommerce-ux-study.pdf',
-        label: 'Research',
-
+        label: 'Research'
       }
     ],
     details: {
@@ -197,7 +209,7 @@ const MOCK_PROJECTS: Project[] = [
         'TBD',
       ]
     },
-    dateCreated: '2023-05-01',
+    dateCreated: '2025-04-27',
     dateCompleted: '',
     order: 3
   },
@@ -321,11 +333,11 @@ export const useProjects = () => {
 
   const getCategoryIcon = (category: Project['category']) => {
     const categoryIcons = {
-      dev: '/assets/img/icons/svg/browser-code-solid-svgrepo-com.svg',
-      ux: '/assets/img/icons/svg/design-ideas-svgrepo-com.svg',
-      research: '/assets/img/icons/svg/office-search-research-svgrepo-com.svg'
+      dev: '/img/icons/svg/browser-code-solid-svgrepo-com.svg',
+      ux: '/img/icons/svg/design-ideas-svgrepo-com.svg',
+      research: '/img/icons/svg/office-search-research-svgrepo-com.svg'
     }
-    return categoryIcons[category] || '/assets/img/icons/svg/code-square-filled-svgrepo-com.svg'
+    return categoryIcons[category] || '/img/icons/svg/code-square-filled-svgrepo-com.svg'
   }
 
   const getCategoryLabel = (category: Project['category']) => {

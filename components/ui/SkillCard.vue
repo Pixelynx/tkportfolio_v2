@@ -82,18 +82,12 @@
           <!-- Skill Icon -->
           <div class="skill-icon mt-3 w-8 h-8 flex items-center justify-center">
             <img 
-              v-if="skill.iconType === 'image'" 
-              :src="getSkillIcon(skill)" 
+              v-if="skill.iconType === 'image' && skill.icon" 
+              :src="skill.icon" 
               :alt="skill.name"
               class="w-6 h-6 object-contain"
               @error="handleImageError(skill.id)"
             />
-            <span 
-              v-else-if="skill.iconType === 'emoji'" 
-              class="text-lg"
-            >
-              {{ getSkillIcon(skill) }}
-            </span>
             <div 
               v-else 
               class="w-6 h-6 rounded-full"
@@ -121,8 +115,7 @@ import { useSkills } from '~/composables/useSkills'
 const { 
   skillCategories, 
   getSkillsByCategory, 
-  getSkillColor, 
-  getSkillIcon 
+  getSkillColor 
 } = useSkills()
 
 // Reactive state

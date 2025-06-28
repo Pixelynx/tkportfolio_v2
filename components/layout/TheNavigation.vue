@@ -81,9 +81,6 @@
             :aria-current="activeSection === section.id ? 'location' : false"
             @click="scrollToSection(section.id)"
           >
-            <span class="w-4 h-4 flex items-center justify-center" aria-hidden="true">
-              {{ getSectionIcon(section.id) }}
-            </span>
             <span class="sr-only">{{ section.title }}</span>
           </button>
         </li>
@@ -161,17 +158,6 @@ const getMobileDotClasses = (section: Section) => [
     ? 'bg-primary-600 text-white shadow-lg scale-110'
     : 'bg-surface-100 dark:bg-surface-700 text-text-600 dark:text-text-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400'
 ]
-
-const getSectionIcon = (sectionId: string): string => {
-  const iconMap: Record<string, string> = {
-    home: '🏠',
-    skills: '🎓',
-    projects: '📁',
-    contact: '✉️',
-    about: '👤'
-  }
-  return iconMap[sectionId] || '📄'
-}
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)

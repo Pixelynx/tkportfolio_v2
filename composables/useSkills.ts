@@ -149,13 +149,6 @@ export function useSkills() {
     return skill.color || '#6366F1'
   }
 
-  function getSkillIcon(skill: Skill): string {
-    if (skill.iconType === 'emoji') {
-      return skill.icon || '⚡'
-    }
-    return skill.icon || '/placeholder-icon.png'
-  }
-
   function formatProficiency(proficiency: number): string {
     if (proficiency >= 90) return 'Expert'
     if (proficiency >= 75) return 'Advanced'
@@ -188,7 +181,6 @@ export function useSkills() {
     toggleSkillHighlight,
     loadSkills,
     getSkillColor,
-    getSkillIcon,
     formatProficiency
   }
 } 

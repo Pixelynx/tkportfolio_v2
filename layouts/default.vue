@@ -128,7 +128,7 @@ useHead({
     ...(props.noIndex ? [{ name: 'robots', content: 'noindex, nofollow' }] : []),
   ],
   link: [
-    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'icon', type: 'image/x-icon', href: '/img/icons/svg/heart-fill.svg' },
     { rel: 'canonical', href: props.canonical ?? seoConfig.url },
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
