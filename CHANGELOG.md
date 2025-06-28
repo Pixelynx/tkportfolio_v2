@@ -16,6 +16,24 @@
   - Cleaned up template logic to use direct `link.icon` and `skill.icon` properties
   - Updated SkillCard.vue to eliminate emoji display logic in favor of image-only icons
 
+- Component style consistency and visual enhancements
+  - Updated home section CTA buttons to match filter button style convention with consistent sizing and interactions
+  - Applied `brightness-0 invert` filters to category icons in ProjectCard and ProjectModal for better contrast
+  - Increased ProjectsSection filter icons from 16px to 18px for improved visibility
+  - Implemented dynamic icon color changes using CSS filters for active/inactive states
+
+- Project data improvements and bug fixes
+  - Added real project images for ResuMate project replacing placeholder assets
+  - Fixed ProjectModal image display by changing from `object-cover` to `object-contain` for proper scaling
+  - Increased maxLinks from 2 to 3
+  - Updated project image paths to use actual screenshots in `/img/proj/resumate/ui/` directory
+
+- Production deployment preparation
+  - Created comprehensive `netlify.toml` configuration with build settings, redirects, and performance headers
+  - Updated `nuxt.config.ts` for static site generation with SSR enabled and optimized runtime configuration
+  - Configured asset caching, security headers, and SPA routing support for Netlify deployment
+  - Set up build command (`npm run generate`) and publish directory (`.output/public`) for static hosting
+
 ## [2025-06-26]
 ### [client]
 - Enhanced carousel alignment and centering behavior
