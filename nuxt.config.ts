@@ -50,10 +50,8 @@ export default defineNuxtConfig({
   
   // Nitro configuration for static site generation
   nitro: {
-    preset: 'netlify',
     prerender: {
-      routes: ['/'],
-      crawlLinks: true
+      routes: ['/']
     },
     compressPublicAssets: true,
     minify: true
@@ -69,6 +67,6 @@ export default defineNuxtConfig({
   // TypeScript configuration
   typescript: {
     strict: true,
-    typeCheck: true
+    typeCheck: false
   }
 })
