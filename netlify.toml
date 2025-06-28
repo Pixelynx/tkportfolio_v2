@@ -1,5 +1,5 @@
 [build]
-  command = "npm ci && npx nuxt generate --verbose"
+  command = "npm ci && npx nuxt generate --prerender"
   publish = ".output/public"
   
 [build.environment]
