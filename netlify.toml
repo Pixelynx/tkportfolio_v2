@@ -1,6 +1,6 @@
 [build]
   command = "npx nuxt generate"
-  publish = "dist/client"
+  publish = "dist"
   
 [build.environment]
   NODE_VERSION = "20"
