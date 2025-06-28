@@ -48,11 +48,18 @@ export default defineNuxtConfig({
 
   ssr: true,
   
-  // Nitro configuration for static site generation 
+    // Nitro configuration for static site generation 
   nitro: {
     output: {
-      dir: 'dist/public'
-  } ,
+      dir: 'dist'
+    },
+    publicAssets: [
+      {
+        baseURL: '/',
+        dir: 'public',
+        maxAge: 31536000
+      }
+    ],
     prerender: {
       routes: ['/'],
       crawlLinks: true,

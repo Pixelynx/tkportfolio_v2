@@ -1,6 +1,6 @@
 [build]
-  command = "npx nuxt generate && cp -r .output/public/* dist/public || echo 'using existing dist'"
-  publish = "dist/public"
+  command = "npx nuxt generate"
+  publish = "dist"
   
 [build.environment]
   NODE_VERSION = "20"
