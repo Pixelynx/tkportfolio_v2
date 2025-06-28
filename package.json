@@ -12,7 +12,6 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "build:netlify": "nuxt generate --preset=netlify",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "nuxt typecheck",
