@@ -1,5 +1,5 @@
 [build]
-  command = "npx nuxt generate && cp -r .output/public/* dist/ 2>/dev/null || cp -r dist/public/* dist/ 2>/dev/null || echo 'Assets copied'"
+  command = "npx nuxt generate && echo 'Build complete, checking directories:' && ls -la dist/ && echo 'Attempting asset copy...' && cp -r dist/public/* dist/ && echo 'Copy successful, final structure:' && ls -la dist/"
   publish = "dist"
   
 [build.environment]
