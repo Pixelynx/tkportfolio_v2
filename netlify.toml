@@ -1,5 +1,5 @@
 [build]
-  command = "npm ci && echo 'npm ci done' && npm run generate --verbose 2>&1 && echo 'generate done' && ls -la .output && ls -la .output/public"
+  command = "npm ci && echo 'npm ci done' && npx nuxt generate --verbose 2>&1 && echo 'generate done' && ls -la .output && ls -la .output/public"
   publish = ".output/public"
   
 [build.environment]
