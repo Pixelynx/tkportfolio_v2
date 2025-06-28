@@ -22,7 +22,12 @@
               aria-label="Show experience"
               :aria-pressed="activeView === 'experience'"
             >
-              <span class="text-sm" aria-hidden="true">💼</span>
+              <img 
+                src="/img/icons/svg/rectangular-briefcase-svgrepo-com.svg" 
+                alt="Experience" 
+                class="w-4 h-4"
+                :class="getIconColorClass('experience')"
+              />
             </button>
 
             <button
@@ -33,7 +38,12 @@
               aria-label="Show skills"
               :aria-pressed="activeView === 'skills'"
             >
-              <span class="text-sm" aria-hidden="true">⚡</span>
+              <img 
+                src="/img/icons/svg/skills-svgrepo-com.svg" 
+                alt="Skills" 
+                class="w-4 h-4"
+                :class="getIconColorClass('skills')"
+              />
             </button>
           </div>
         </div>
@@ -138,6 +148,13 @@ function getMobileFilterButtonClass(view: 'skills' | 'experience') {
       ? 'bg-primary-600 text-white border-primary-600 shadow-md'
       : 'bg-white dark:bg-surface-800 text-text-700 dark:text-text-300 border-border-surface-300 dark:border-border-surface-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-300 dark:hover:border-primary-600'
   ]
+}
+
+function getIconColorClass(view: 'skills' | 'experience') {
+  const isActive = activeView.value === view
+  return isActive
+    ? 'brightness-0 invert' // Makes icon white when active
+    : 'opacity-70 dark:brightness-0 dark:invert dark:opacity-70' // Adapts to dark mode when inactive
 }
 
 // Lifecycle

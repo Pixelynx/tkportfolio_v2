@@ -110,12 +110,6 @@ const MOCK_PROJECTS: Project[] = [
     ],
     links: [
       {
-        type: 'demo',
-        url: 'https://SpotiVibe-app.com',
-        label: 'Demo',
-
-      },
-      {
         type: 'code',
         url: 'https://github.com/pixelynx/SpotiVibe',
         label: 'GitHub'
@@ -321,11 +315,11 @@ export const useProjects = () => {
 
   const getCategoryIcon = (category: Project['category']) => {
     const categoryIcons = {
-      dev: '/assets/img/icons/svg/browser-code-solid-svgrepo-com.svg',
-      ux: '/assets/img/icons/svg/design-ideas-svgrepo-com.svg',
-      research: '/assets/img/icons/svg/office-search-research-svgrepo-com.svg'
+      dev: '/img/icons/svg/browser-code-solid-svgrepo-com.svg',
+      ux: '/img/icons/svg/design-ideas-svgrepo-com.svg',
+      research: '/img/icons/svg/office-search-research-svgrepo-com.svg'
     }
-    return categoryIcons[category] || '/assets/img/icons/svg/code-square-filled-svgrepo-com.svg'
+    return categoryIcons[category] || '/img/icons/svg/code-square-filled-svgrepo-com.svg'
   }
 
   const getCategoryLabel = (category: Project['category']) => {

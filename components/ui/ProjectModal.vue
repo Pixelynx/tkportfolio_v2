@@ -111,9 +111,11 @@
                 <div class="space-y-4">
                   <div class="flex items-start justify-between">
                     <div class="flex items-center space-x-3">
-                      <span class="text-3xl" :aria-label="categoryLabel">
-                        {{ categoryIcon }}
-                      </span>
+                      <img 
+                        :src="categoryIcon" 
+                        :alt="categoryLabel"
+                        class="w-8 h-8 brightness-0 invert"
+                      />
                       <div>
                         <h2
                           :id="`modal-title-${project.id}`"
@@ -166,7 +168,7 @@
                       class="project-link"
                       :class="getLinkClass(link.type)"
                     >
-                      <span class="text-lg" aria-hidden="true">{{ link.icon || getDefaultIcon(link.type) }}</span>
+                      <span class="text-lg" aria-hidden="true">{{ link.icon }}</span>
                       <span class="font-medium">{{ link.label }}</span>
                     </a>
                   </div>
@@ -356,7 +358,7 @@ const statusDotColor = computed(() => {
 })
 
 const categoryIcon = computed(() => {
-  return props.project ? getCategoryIcon(props.project.category) : ''
+  return props.project ? getCategoryIcon(props.project.category) : '/img/icons/svg/code-square-filled-svgrepo-com.svg'
 })
 
 const categoryLabel = computed(() => {
@@ -380,17 +382,6 @@ const formatDate = (dateString: string): string => {
     year: 'numeric', 
     month: 'long'
   })
-}
-
-const getDefaultIcon = (type: ProjectLink['type']): string => {
-  const defaultIcons = {
-    demo: '🚀',
-    code: '💻',
-    research: '📊',
-    design: '🎨',
-    documentation: '📖'
-  }
-  return defaultIcons[type] || '🔗'
 }
 
 const getLinkClass = (type: ProjectLink['type']): string => {

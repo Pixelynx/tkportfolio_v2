@@ -34,9 +34,11 @@
           
           <!-- Category Icon -->
           <div class="flex items-center space-x-2">
-            <span class="text-2xl" :aria-label="categoryLabel">
-              {{ categoryIcon }}
-            </span>
+            <img 
+              :src="categoryIcon" 
+              :alt="categoryLabel"
+              class="w-6 h-6 brightness-0 invert"
+            />
           </div>
         </div>
       </div>
@@ -103,7 +105,7 @@
             @click.stop="handleActionClick(link)"
             :aria-label="link.label"
           >
-            <span class="text-sm" aria-hidden="true">{{ link.icon || getDefaultIcon(link.type) }}</span>
+            <span class="text-sm" aria-hidden="true">{{ link.icon }}</span>
             <span class="text-xs font-medium">{{ link.label }}</span>
           </button>
         </div>
@@ -212,17 +214,6 @@ const formatStatus = (status: Project['status']): string => {
     'archived': 'Archived'
   }
   return statusLabels[status] || status
-}
-
-const getDefaultIcon = (type: ProjectLink['type']): string => {
-  const defaultIcons = {
-    demo: '🚀',
-    code: '💻',
-    research: '📊',
-    design: '🎨',
-    documentation: '📖'
-  }
-  return defaultIcons[type] || '🔗'
 }
 
 const getActionButtonClass = (type: ProjectLink['type']): string => {

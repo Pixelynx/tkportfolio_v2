@@ -2,7 +2,21 @@
 
 ## [0.1.0]
 
-## [2025-01-28]
+## [2025-06-27]
+### [client]
+- Icon system overhaul and modernization
+  - Migrated from emoji-based icons to professional SVG/PNG image icons across all components
+  - Updated all technology skill icons to use `/img/icons/svg/` and `/img/icons/` standardized paths
+  - Added category-specific icons: experience (briefcase), development (code), UX (design), research (search), skills (gear)
+  - Implemented proper icon support for ProjectsSection and SkillXPSection filter buttons with dynamic color management
+
+- Comprehensive emoji dependency removal
+  - Removed `getDefaultIcon()` functions from ProjectCard.vue and ProjectModal.vue components
+  - Removed `getSkillIcon()` function from useSkills.ts composable and all related references
+  - Cleaned up template logic to use direct `link.icon` and `skill.icon` properties
+  - Updated SkillCard.vue to eliminate emoji display logic in favor of image-only icons
+
+## [2025-06-26]
 ### [client]
 - Enhanced carousel alignment and centering behavior
   - Implemented dynamic centering logic for mobile carousel using computed properties
@@ -50,7 +64,7 @@
   - Updated button icons from `text-2xl` to `text-sm` for header integration
   - Implemented unified header styling across all major sections for visual consistency
 
-## [2025-01-27]
+## [2025-06-25]
 ### [client]
 - Properly configured Tailwind CSS dark mode with `darkMode: 'class'`
   - Added global dark mode wrapper in `app.vue` to ensure consistent dark theme application
@@ -74,7 +88,7 @@
 - Added scroll-fade utility generation with dark mode variants
 - Improved dark mode color scheme integration across all components
 
-## [2025-06-26]
+## [2025-06-24]
 ### [client]
 - **ProjectsSection component**: Filtering system with horizontal carousel and responsive design
 - **ProjectCard component**: Interactive project cards with hover effects and quick action buttons

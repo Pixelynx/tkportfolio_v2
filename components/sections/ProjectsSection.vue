@@ -27,7 +27,12 @@
               :aria-label="`Filter projects by ${category.label}`"
               :aria-pressed="currentFilter.category === category.value"
             >
-              <span class="text-sm" aria-hidden="true">{{ category.icon }}</span>
+              <img 
+                :src="category.icon" 
+                :alt="category.label" 
+                class="w-[18px] h-[18px]"
+                :class="getIconColorClass(category.value)"
+              />
               <span
                 v-if="category.count > 0"
                 class="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-primary-500 rounded-full"
@@ -265,25 +270,29 @@ const filterCategories = computed(() => [
   {
     value: 'all' as const,
     label: 'All',
-    icon: '📁', // temp
+    icon: '/img/icons/svg/infinite-svgrepo-com.svg',
+    color: 'text-text-100',
     count: filterCounts.value.all
   },
   {
     value: 'dev' as const,
     label: 'Development',
-    icon: '💻', // temp
+    icon: '/img/icons/svg/browser-code-solid-svgrepo-com.svg',
+    color: 'text-text-100',
     count: filterCounts.value.dev
   },
   {
     value: 'ux' as const,
     label: 'UX Design',
-    icon: '🎨', // temp
+    icon: '/img/icons/svg/design-ideas-svgrepo-com.svg',
+    color: 'text-text-100',
     count: filterCounts.value.ux
   },
   {
     value: 'research' as const,
     label: 'Research',
-    icon: '📊', // temp
+    icon: '/img/icons/svg/office-search-research-svgrepo-com.svg',
+    color: 'text-text-100',
     count: filterCounts.value.research
   }
 ])
@@ -345,6 +354,13 @@ const getCountBadgeClass = (category: string) => {
   return isActive
     ? 'bg-white text-primary-600'
     : 'bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
+}
+
+const getIconColorClass = (category: string) => {
+  const isActive = currentFilter.category === category
+  return isActive
+    ? 'brightness-0 invert' // Makes icon white when active
+    : 'opacity-70 dark:brightness-0 dark:invert dark:opacity-70' // Adapts to dark mode when inactive
 }
 
 const scrollLeft = () => {
