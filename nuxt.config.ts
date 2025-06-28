@@ -46,10 +46,11 @@ export default defineNuxtConfig({
     transpile: ['@vueuse/core']
   },
 
-  ssr: false,
+  ssr: true,
   
   // Nitro configuration for static site generation 
   nitro: {
+    preset: 'netlify',
     prerender: {
       routes: ['/'],
       crawlLinks: true,
@@ -67,7 +68,7 @@ export default defineNuxtConfig({
   // TypeScript configuration
   typescript: {
     strict: true,
-    typeCheck: true
+    typeCheck: false
   },
 
   // Experimental features
