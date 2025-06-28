@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
   // Development and compatibility settings
-  compatibilityDate: '2025-05-15',
+  compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
   
   // Modules
@@ -48,19 +48,19 @@ export default defineNuxtConfig({
 
   ssr: true,
   
-  // Nitro configuration for static site generation
+  // Nitro configuration for static site generation 
   nitro: {
     prerender: {
-      routes: ['/']
-    },
-    compressPublicAssets: true,
-    minify: true
+      routes: ['/'],
+      crawlLinks: true,
+      failOnError: false
+    }
   },
 
   // Runtime configuration
   runtimeConfig: {
     public: {
-      siteUrl: process.env['SITE_URL'] || 'https://tjstevens-portfolio.netlify.app/'
+      siteUrl: 'https://tjstevens-portfolio.netlify.app/'
     }
   },
 
@@ -68,5 +68,10 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
     typeCheck: true
+  },
+
+  // Experimental features
+  experimental: {
+    payloadExtraction: false
   }
 })
