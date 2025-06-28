@@ -5,27 +5,87 @@ export interface Project {
   id: string
   title: string
   description: string
-  image: string
-  technologies: string[]
-  category: 'app' | 'design' | 'ux'
-  challenge?: string
-  solution?: string
-  liveUrl?: string
-  githubUrl?: string
-  caseStudyUrl?: string
+  shortDescription: string
+  category: 'dev' | 'ux' | 'research'
+  status: 'completed' | 'in-progress' | 'planning' | 'archived'
   featured: boolean
+  technologies: readonly string[]
+  images: readonly ProjectImage[]
+  links: readonly ProjectLink[]
+  details: ProjectDetails
+  dateCreated: string
+  dateCompleted?: string
   order: number
+}
+
+export interface ProjectImage {
+  id: string
+  url: string
+  alt: string
+  caption?: string
+  type: 'hero' | 'gallery' | 'thumbnail'
+  width?: number
+  height?: number
+}
+
+export interface ProjectLink {
+  type: 'demo' | 'code' | 'research' | 'design' | 'documentation'
+  url: string
+  label: string
+  icon?: string
+}
+
+export interface ProjectDetails {
+  overview: string
+  challenges: readonly string[]
+  solutions: readonly string[]
+  architecture?: string
+  features: readonly string[]
+  lessons: readonly string[]
+  nextSteps?: readonly string[]
+}
+
+export interface ProjectFilter {
+  category: 'all' | 'dev' | 'ux' | 'research'
+  status?: Project['status']
+  featured?: boolean
+}
+
+export interface ProjectModalState {
+  isOpen: boolean
+  project: Project | null
+  currentImageIndex: number
 }
 
 // Skill types
 export interface Skill {
   id: string
   name: string
-  category: 'frontend' | 'backend' | 'tools' | 'design'
+  category: 'frontend' | 'backend' | 'testing' | 'tools' | 'libraries' | 'design'
   proficiency: number // 0-100
   icon?: string
+  iconType?: 'svg' | 'image' | 'emoji'
   color?: string
+  description?: string
+  yearsExperience?: number
+  tags?: readonly string[]
+  isHighlighted?: boolean
   order: number
+}
+
+export interface SkillCategory {
+  id: string
+  name: string
+  description?: string
+  color: string
+  skills?: Skill[]
+  order: number
+}
+
+export interface SkillFilter {
+  category: 'all' | Skill['category']
+  proficiencyMin?: number
+  highlighted?: boolean
 }
 
 // Experience types
@@ -37,10 +97,18 @@ export interface Experience {
   startDate: string
   endDate?: string
   current: boolean
-  description: string[]
-  technologies: string[]
-  achievements: string[]
+  description: readonly string[]
+  technologies: readonly string[]
+  achievements: readonly string[]
+  responsibilities?: readonly string[]
+  companyUrl?: string
+  companyLogo?: string
   order: number
+}
+
+export interface SkillXPFilter {
+  activeView: 'skills' | 'experience'
+  skillCategory?: Skill['category']
 }
 
 // Contact form types

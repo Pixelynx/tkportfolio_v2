@@ -8,6 +8,7 @@ module.exports = {
     './nuxt.config.{js,ts}',
     './app.vue'
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -319,6 +320,57 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    function({ addUtilities, theme }) {
+      const newUtilities = {
+        '.scroll-fade': {
+          'opacity': '0.5',
+          'transition': 'opacity 0.3s ease-in-out',
+          'scrollbar-width': 'thin',
+          'scrollbar-color': `${theme('colors.primary.500')} ${theme('colors.background.700')}`,
+          
+          '&:hover': {
+            'opacity': '1'
+          },
+          
+          '&::-webkit-scrollbar': {
+            'width': '6px'
+          },
+          
+          '&::-webkit-scrollbar-track': {
+            'background': theme('colors.background.700'),
+            'border-radius': '3px'
+          },
+          
+          '&::-webkit-scrollbar-thumb': {
+            'background': theme('colors.primary.500'),
+            'border-radius': '3px'
+          },
+          
+          '&::-webkit-scrollbar-thumb:hover': {
+            'background': theme('colors.primary.600')
+          },
+          
+          // Dark mode variants
+          '.dark &': {
+            'scrollbar-color': `${theme('colors.primary.400')} ${theme('colors.background.800')}`,
+            
+            '&::-webkit-scrollbar-track': {
+              'background': theme('colors.background.800')
+            },
+            
+            '&::-webkit-scrollbar-thumb': {
+              'background': theme('colors.primary.400')
+            },
+            
+            '&::-webkit-scrollbar-thumb:hover': {
+              'background': theme('colors.primary.500')
+            }
+          }
+        }
+      }
+      
+      addUtilities(newUtilities)
+    }
   ]
 } 

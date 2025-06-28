@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   // Development and compatibility settings
   compatibilityDate: '2025-05-15',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   
   // Modules
   modules: [
@@ -33,7 +33,7 @@ export default defineNuxtConfig({
         { name: 'twitter:description', content: 'Frontend Developer Portfolio showcasing React, Python, and web development projects' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/img/icons/svg/heart-fill.svg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap' }
