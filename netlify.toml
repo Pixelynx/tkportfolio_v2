@@ -1,5 +1,5 @@
 [build]
-  command = "npm ci && npm run build && ls -la dist"
+  command = "npx nuxt generate"
   publish = "dist/client"
   
 [build.environment]
