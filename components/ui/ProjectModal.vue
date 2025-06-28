@@ -311,6 +311,7 @@
 import { computed } from 'vue'
 import type { Project, ProjectLink } from '~/types'
 import { useProjects } from '~/composables/useProjects'
+import { getIconPath } from '~/config/skills'
 
 interface Props {
   project: Project | null
@@ -358,7 +359,7 @@ const statusDotColor = computed(() => {
 })
 
 const categoryIcon = computed(() => {
-  return props.project ? getCategoryIcon(props.project.category) : '/img/icons/svg/code-square-filled-svgrepo-com.svg'
+  return props.project ? getCategoryIcon(props.project.category) : getIconPath('code-square-filled-svgrepo-com.svg')
 })
 
 const categoryLabel = computed(() => {

@@ -4,6 +4,15 @@
 
 ## [2025-06-27]
 ### [client]
+- Dynamic icon path construction system implementation
+  - Created centralized `config/skills.ts` utility with `getIconPath()` and `getCategoryIconPath()` functions for dynamic asset resolution
+  - Converted all skill icons in constants.ts from hardcoded paths (`icon: '/img/icons/svg/file.svg'`) to dynamic names (`iconName: 'file.svg'`)
+  - Updated SkillCard.vue component to use `getIconPath(skill.iconName)` with proper TypeScript interface support
+  - Refactored project category icons in useProjects.ts and ProjectsSection.vue to use dynamic path construction
+  - Updated SkillXPSection.vue mobile filter buttons to use dynamic icon resolution with fallback support
+  - Fixed ProjectModal.vue fallback icon to use dynamic path instead of hardcoded SVG reference
+  - Added comprehensive TypeScript type safety with updated Skill interface including `iconName?: string` property
+
 - Icon system overhaul and modernization
   - Migrated from emoji-based icons to professional SVG/PNG image icons across all components
   - Updated all technology skill icons to use `/img/icons/svg/` and `/img/icons/` standardized paths
@@ -28,11 +37,13 @@
   - Increased maxLinks from 2 to 3
   - Updated project image paths to use actual screenshots in `/img/proj/resumate/ui/` directory
 
-- Production deployment preparation
+- Production deployment preparation and build optimization
+  - Implemented dynamic asset path construction to resolve Vite build issues with static asset imports
   - Created comprehensive `netlify.toml` configuration with build settings, redirects, and performance headers
   - Updated `nuxt.config.ts` for static site generation with SSR enabled and optimized runtime configuration
   - Configured asset caching, security headers, and SPA routing support for Netlify deployment
   - Set up build command (`npm run generate`) and publish directory (`.output/public`) for static hosting
+  - Resolved Rollup import resolution errors by eliminating hardcoded asset paths in favor of runtime construction
 
 ## [2025-06-26]
 ### [client]

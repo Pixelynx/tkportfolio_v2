@@ -82,8 +82,8 @@
           <!-- Skill Icon -->
           <div class="skill-icon mt-3 w-8 h-8 flex items-center justify-center">
             <img 
-              v-if="skill.iconType === 'image' && skill.icon" 
-              :src="skill.icon" 
+              v-if="skill.iconType === 'image' && skill.iconName" 
+              :src="getIconPath(skill.iconName)" 
               :alt="skill.name"
               class="w-6 h-6 object-contain"
               @error="handleImageError(skill.id)"
@@ -110,6 +110,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useSkills } from '~/composables/useSkills'
+import { getIconPath } from '~/config/skills'
 
 // Composables
 const { 
