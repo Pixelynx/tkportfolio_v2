@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build:debug": "nuxt generate --verbose || (echo 'Generate failed, trying build instead' && nuxt build --preset=static && echo 'Contents of .output:' && ls -la .output || echo 'No .output directory')",
     "dev": "nuxt dev",
     "generate": "nuxt generate --verbose",
     "preview": "nuxt preview",

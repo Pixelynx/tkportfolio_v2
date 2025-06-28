@@ -1,9 +1,9 @@
 [build]
-  command = "npm ci && npx nuxt generate"
+  command = "npm ci && npm run debug:netlify && ls -la .output && ls -la .output/public"
   publish = ".output/public"
   
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   NPM_VERSION = "10"
   NUXT_TELEMETRY_DISABLED = "1"
   CI = "true"
