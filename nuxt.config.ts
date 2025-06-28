@@ -50,6 +50,9 @@ export default defineNuxtConfig({
   
   // Nitro configuration for static site generation 
   nitro: {
+    output: {
+      dir: 'dist'
+  } ,
     prerender: {
       routes: ['/'],
       crawlLinks: true,
