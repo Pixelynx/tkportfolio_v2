@@ -1,11 +1,12 @@
 [build]
-  command = "npm ci && npx nuxt generate"
+  command = "npm ci && npm run build:netlify"
   publish = ".output/public"
   
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "18.18.0"
   NPM_VERSION = "10"
   NUXT_TELEMETRY_DISABLED = "1"
+  NODE_OPTIONS = "--max-old-space-size=4096"
 
 [[redirects]]
   from = "/*"
