@@ -239,6 +239,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import type { Project, ProjectLink } from '~/types'
 import { useProjects } from '~/composables/useProjects'
+import { getCategoryIconPath, getIconPath } from '~/config/skills'
 import ProjectCard from '~/components/ui/ProjectCard.vue'
 import ProjectModal from '../ui/ProjectModal.vue'
 
@@ -270,28 +271,28 @@ const filterCategories = computed(() => [
   {
     value: 'all' as const,
     label: 'All',
-    icon: '/img/icons/svg/infinite-svgrepo-com.svg',
+    icon: getIconPath('infinite-svgrepo-com.svg'),
     color: 'text-text-100',
     count: filterCounts.value.all
   },
   {
     value: 'dev' as const,
     label: 'Development',
-    icon: '/img/icons/svg/browser-code-solid-svgrepo-com.svg',
+    icon: getCategoryIconPath('dev'),
     color: 'text-text-100',
     count: filterCounts.value.dev
   },
   {
     value: 'ux' as const,
     label: 'UX Design',
-    icon: '/img/icons/svg/design-ideas-svgrepo-com.svg',
+    icon: getCategoryIconPath('ux'),
     color: 'text-text-100',
     count: filterCounts.value.ux
   },
   {
     value: 'research' as const,
     label: 'Research',
-    icon: '/img/icons/svg/office-search-research-svgrepo-com.svg',
+    icon: getCategoryIconPath('research'),
     color: 'text-text-100',
     count: filterCounts.value.research
   }

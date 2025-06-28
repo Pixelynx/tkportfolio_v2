@@ -23,7 +23,7 @@
               :aria-pressed="activeView === 'experience'"
             >
               <img 
-                src="/img/icons/svg/rectangular-briefcase-svgrepo-com.svg" 
+                :src="getIconSrc('experience')" 
                 alt="Experience" 
                 class="w-4 h-4"
                 :class="getIconColorClass('experience')"
@@ -39,7 +39,7 @@
               :aria-pressed="activeView === 'skills'"
             >
               <img 
-                src="/img/icons/svg/skills-svgrepo-com.svg" 
+                :src="getIconSrc('skills')" 
                 alt="Skills" 
                 class="w-4 h-4"
                 :class="getIconColorClass('skills')"
@@ -108,8 +108,6 @@
             Technical Skills
           </h3>
 
-
-
           <!-- Mobile Skills Card -->
           <div class="skills-container">
             <SkillCard />
@@ -124,6 +122,7 @@
 import { ref, onMounted } from 'vue'
 
 import { useExperience } from '~/composables/useExperience'
+import { getIconPath } from '~/config/skills'
 import SkillCard from '~/components/ui/SkillCard.vue'
 import ExperienceCard from '~/components/ui/ExperienceCard.vue'
 
@@ -155,6 +154,14 @@ function getIconColorClass(view: 'skills' | 'experience') {
   return isActive
     ? 'brightness-0 invert' // Makes icon white when active
     : 'opacity-70 dark:brightness-0 dark:invert dark:opacity-70' // Adapts to dark mode when inactive
+}
+
+function getIconSrc(view: 'skills' | 'experience') {
+  const iconNames = {
+    experience: 'rectangular-briefcase-svgrepo-com.svg',
+    skills: 'skills-svgrepo-com.svg'
+  }
+  return getIconPath(iconNames[view])
 }
 
 // Lifecycle
