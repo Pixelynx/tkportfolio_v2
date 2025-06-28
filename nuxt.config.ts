@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
   // Development and compatibility settings
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2025-05-15',
   devtools: { enabled: false },
   
   // Modules
