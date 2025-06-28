@@ -48,6 +48,15 @@ export default defineNuxtConfig({
 
   // Static Site Generation
   ssr: true,
+  
+  // Ensure all routes are prerendered
+  nitro: {
+    prerender: {
+      routes: ['/']
+    },
+    compressPublicAssets: true,
+    minify: true
+  },
 
   // Runtime configuration
   runtimeConfig: {
@@ -60,11 +69,5 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
     typeCheck: true
-  },
-
-  // Nitro configuration for server
-  nitro: {
-    compressPublicAssets: true,
-    minify: true
   }
 })
