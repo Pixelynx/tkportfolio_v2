@@ -116,6 +116,11 @@ const MOCK_PROJECTS: Project[] = [
         type: 'code',
         url: 'https://github.com/pixelynx/SpotiVibe',
         label: 'GitHub'
+      },
+      {
+        type: 'research',
+        url: 'https://github.com/Pixelynx/SpotiVibe/blob/main/docs/PROJECT_OVERVIEW.md',
+        label: 'Research'
       }
     ],
     details: {
@@ -184,12 +189,12 @@ const MOCK_PROJECTS: Project[] = [
     links: [
       {
         type: 'design',
-        url: 'https://figma.com/ecommerce-redesign',
+        url: 'https://github.com/Pixelynx/PFNRedesign/tree/main/docs/Wireframes',
         label: 'Designs'
       },
       {
         type: 'research',
-        url: '/research/ecommerce-ux-study.pdf',
+        url: 'https://github.com/Pixelynx/PFNRedesign/blob/main/docs/PROJECT_OVERVIEW.md',
         label: 'Research'
       }
     ],
