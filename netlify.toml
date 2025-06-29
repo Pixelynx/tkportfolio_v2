@@ -1,5 +1,5 @@
 [build]
-  command = "npx nuxt generate"
+  command = "npx nuxt generate && echo 'Build complete, checking .output directory:' && ls -la .output/ && echo 'Checking .output/public contents:' && ls -la .output/public/ && echo 'Attempting asset copy if nested public exists...' && if [ -d '.output/public/public' ]; then cp -r .output/public/public/* .output/public/ && rm -rf .output/public/public; fi && echo 'Copy completed, final .output/public structure:' && ls -la .output/public/"
   publish = ".output/public"
   
 [build.environment]
