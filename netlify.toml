@@ -1,5 +1,5 @@
 [build]
-  command = "npx nuxt generate && echo 'Build complete, checking .output directory:' && ls -la .output/ && echo 'Checking .output/public contents:' && ls -la .output/public/ && echo 'Attempting asset copy if nested public exists...' && if [ -d '.output/public/public' ]; then cp -r .output/public/public/* .output/public/ && rm -rf .output/public/public; fi && echo 'Copy completed, final .output/public structure:' && ls -la .output/public/"
+  command = "npx nuxt generate && echo 'Generated structure:' && find .output/public -type f | head -20 && echo 'Looking for img directory:' && find .output/public -name 'img' -type d && echo 'Copying nested public if exists:' && if [ -d '.output/public/public' ]; then cp -r .output/public/public/* .output/public/ && rm -rf .output/public/public; fi && echo 'Final check for img:' && ls -la .output/public/img/ || echo 'No img directory found'"
   publish = ".output/public"
   
 [build.environment]
