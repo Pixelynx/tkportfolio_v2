@@ -1,5 +1,5 @@
 [build]
-  command = "npx nuxt generate && echo 'Source public contents:' && ls -la public/ && echo 'Generated .output/public before copy:' && ls -la .output/public/ && echo 'Copying with verbose output...' && cp -rv public/* .output/public/ && echo 'After copy:' && ls -la .output/public/ && echo 'Looking for any img directories anywhere:' && find .output/public -name '*img*' -type d"
+  command = "echo 'Node version:' && node --version && echo 'NPM version:' && npm --version && echo 'Current directory:' && pwd && echo 'All files before build:' && find . -name '*.png' -o -name 'img' -type d && npx nuxt generate && echo 'After build - checking for img:' && find . -name 'img' -type d && echo 'Checking .output structure:' && find .output -name 'img' -type d 2>/dev/null || echo 'No .output img found'"
   publish = ".output/public"
   
 [build.environment]
