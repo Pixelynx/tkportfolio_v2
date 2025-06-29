@@ -1,5 +1,5 @@
 [build]
-  command = "npx nuxt generate && echo 'Build complete, copying public assets...' && cp -r public/* .output/public/ && echo 'Assets copied, final structure:' && ls -la .output/public/ && echo 'Checking img directory:' && ls -la .output/public/img/"
+  command = "npx nuxt generate && echo 'Waiting for file system to sync...' && sleep 2 && echo 'Source public after build:' && ls -la public/ && cp -rv public/* .output/public/ && echo 'Final check:' && ls -la .output/public/"
   publish = ".output/public"
   
 [build.environment]
