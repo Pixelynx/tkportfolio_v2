@@ -1,6 +1,6 @@
 [build]
-  command = "npx nuxt generate && echo 'Copying public assets...' && cp -r public/* dist/ && echo 'Final structure:' && ls -la dist/"
-  publish = "dist"
+  command = "npx nuxt generate"
+  publish = ".output/public"
   
 [build.environment]
   NODE_VERSION = "20"
