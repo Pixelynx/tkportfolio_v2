@@ -2,6 +2,17 @@
 
 ## [0.1.0]
 
+## [2025-06-29]
+### [client]
+- Home section visual enhancement with background illustration
+  - Added `headset-girl-bg-svg.svg` as decorative background image to home section
+  - Applied CSS filter to transform outline color to match custom primary brand color (#2563eb)
+  - Implemented gradient mask with fade-out effects at top (0-15%) and bottom (85-100%)
+  - Set background image opacity to 50% for subtle visual impact without content interference
+  - Positioned image as centered, contained background with proper z-index layering
+  - Added proper accessibility attributes with `aria-hidden="true"` for decorative element
+  - Enhanced home section visual depth while maintaining content readability and focus
+
 ## [2025-06-28]
 ### [deployment]
 - Netlify deployment configuration resolved
