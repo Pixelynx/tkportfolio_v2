@@ -1,5 +1,5 @@
 [build]
-  command = "npx nuxt generate && cp -r .output/public/* dist/ || echo 'using existing dist'"
+  command = "npx nuxt generate"
   publish = "dist"
   
 [build.environment]
