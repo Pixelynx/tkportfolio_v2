@@ -53,6 +53,13 @@ export default defineNuxtConfig({
     // Nitro configuration for static site generation 
   nitro: {
     preset: 'static',
+    publicAssets: [
+      {
+        baseURL: '/',
+        dir: 'public',
+        maxAge: 31536000
+      }
+    ],
     prerender: {
       routes: ['/'],
       crawlLinks: true,
