@@ -1,5 +1,5 @@
 [build]
-  command = "echo 'Source files:' && find public/img -type f | sort && echo 'Building...' && npx nuxt generate && echo 'Final deployed files:' && find .output/public/img -type f | sort && echo 'Checking specific file:' && ls -la .output/public/img/icons/svg/sass-svgrepo-com.svg || echo 'sass-svgrepo-com.svg NOT FOUND in final build'"
+  command = "npx nuxt generate"
   publish = ".output/public"
   
 [build.environment]
@@ -14,9 +14,8 @@
   status = 200
 
 [[headers]]
-  for = "/img/*"
+  for = "/*"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
