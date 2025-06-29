@@ -49,7 +49,7 @@ export default defineNuxtConfig({
     transpile: ['@vueuse/core']
   },
 
-  ssr: false,
+  ssr: true,
   
     // Nitro configuration for static site generation 
   nitro: {
