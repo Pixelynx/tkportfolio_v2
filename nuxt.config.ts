@@ -38,7 +38,9 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap' }
       ]
-    }
+    },
+    // Configure asset paths for production
+    baseURL: '/',
   },
 
   // Build configuration
@@ -48,9 +50,16 @@ export default defineNuxtConfig({
 
   ssr: true,
   
-  // Nitro configuration for static site generation 
+    // Nitro configuration for static site generation 
   nitro: {
-    preset: 'netlify',
+    preset: 'static',
+    publicAssets: [
+      {
+        baseURL: '/',
+        dir: 'public',
+        maxAge: 31536000
+      }
+    ],
     prerender: {
       routes: ['/'],
       crawlLinks: true,
