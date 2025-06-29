@@ -52,6 +52,7 @@ export default defineNuxtConfig({
   
     // Nitro configuration for static site generation 
   nitro: {
+    preset: 'static',
     prerender: {
       routes: ['/'],
       crawlLinks: true,
