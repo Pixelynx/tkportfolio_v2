@@ -41,7 +41,6 @@ export default defineNuxtConfig({
     },
     // Configure asset paths for production
     baseURL: '/',
-    cdnURL: '/', // Ensures assets use absolute paths
   },
 
   // Build configuration
