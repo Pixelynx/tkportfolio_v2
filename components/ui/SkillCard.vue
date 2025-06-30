@@ -52,18 +52,18 @@
 
     <!-- Vertical Bar Graph Grid-->
     <div class="skills-grid flex justify-center items-center flex-1">
-      <div class="flex justify-center items-end gap-4 overflow-x-auto scrollbar-hide pb-2 w-full h-full">
+      <div class="flex items-end gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-2 w-full h-full px-2 md:px-0 justify-start md:justify-center">
         <div
-          v-for="(skill, index) in displayedSkills"
+          v-for="(skill, index) in responsiveDisplayedSkills"
           :key="skill.id"
-          class="skill-bar-container flex flex-col items-center flex-shrink-0 transition-all duration-300 ease-out"
+          class="skill-bar-container flex flex-col items-center flex-shrink-0 transition-all duration-300 ease-out min-w-[2.5rem] md:min-w-[2rem]"
           :class="getContainerAnimationClass(skill.id)"
           :style="getContainerAnimationStyle(skill.id)"
           @mouseenter="handleSkillHover(skill.id, true)"
           @mouseleave="handleSkillHover(skill.id, false)"
         >
           <!-- Vertical Bar -->
-          <div class="bar-wrapper relative h-64 w-8 bg-gray-200 dark:bg-background-700 rounded-lg overflow-hidden">
+          <div class="bar-wrapper relative h-64 w-7 md:w-8 bg-gray-200 dark:bg-background-700 rounded-lg overflow-hidden">
             <div 
               class="skill-bar absolute bottom-0 left-0 w-full rounded-lg transition-all duration-700 ease-out"
               :style="{ 
@@ -87,7 +87,7 @@
 
           <!-- Skill Icon with Tooltip -->
           <div 
-            class="skill-icon mt-3 w-8 h-8 flex items-center justify-center relative transition-all duration-300 ease-out"
+            class="skill-icon mt-3 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center relative transition-all duration-300 ease-out"
             :class="getIconAnimationClass(skill.id)"
             :style="getIconAnimationStyle(skill.id)"
             @mouseenter="showTooltip(skill.id)"
@@ -180,6 +180,13 @@ const displayedSkills = computed(() => {
   const categorySkills = getSkillsByCategory(activeCategory.value)
   // Limit to 8 skills to prevent overflow
   return categorySkills.slice(0, 8).sort((a, b) => b.proficiency - a.proficiency)
+})
+
+const responsiveDisplayedSkills = computed(() => {
+  // Limit skills on mobile to prevent horizontal scrolling issues
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const maxSkills = isMobile ? 6 : 8
+  return displayedSkills.value.slice(0, maxSkills)
 })
 
 // Methods
