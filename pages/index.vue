@@ -26,7 +26,10 @@
             TK Stevens
           </h1>
           <p class="text-xl md:text-2xl text-text-600 dark:text-text-300 mb-8 mx-2">
-            Fullstack Engineer specializing in Frontend Development
+            <span>{{ typewriter.displayText }}</span><span 
+              class="typewriter-cursor ml-1 text-primary-600 dark:text-primary-400"
+              :class="{ 'opacity-100': typewriter.cursorVisible.value, 'opacity-0': !typewriter.cursorVisible.value }"
+            >|</span>
           </p>
           <div class="space-x-4">
             <NuxtLink
@@ -61,10 +64,32 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
 import { useHead } from 'nuxt/app'
 import ProjectsSection from '~/components/sections/ProjectsSection.vue'
 import SkillXPSection from '~/components/sections/SkillXPSection.vue'
 import ContactSection from '~/components/sections/ContactSection.vue'
+import { useTypewriter } from '~/composables/useTypewriter'
+
+// Initialize typewriter animation
+const typewriter = useTypewriter({
+  baseText: 'Fullstack Engineer specializing in ',
+  words: ['Frontend Development', 'Design', 'User Research'],
+  typingSpeed: 100,
+  erasingSpeed: 65,
+  displayDuration: 2000,
+  pauseDuration: 500,
+  startDelay: 1000
+})
+
+// Lifecycle hooks
+onMounted(() => {
+  typewriter.initializeTypewriter()
+})
+
+onUnmounted(() => {
+  typewriter.cleanupTypewriter()
+})
 
 // SEO and meta tags
 useHead({
@@ -76,6 +101,21 @@ useHead({
 </script>
 
 <style scoped>
+/* Typewriter cursor animation */
+.typewriter-cursor {
+  transition: opacity 0.1s ease-in-out;
+  font-weight: 300;
+  font-family: 'Courier New', monospace;
+}
+
+/* Ensure smooth cursor transitions */
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* Responsive background positioning for home section */
 @media (min-width: 1024px) {
   /* Desktop: Position image to touch left edge */
