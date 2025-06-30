@@ -6,12 +6,21 @@
 ### [client]
 - Home section visual enhancement with background illustration
   - Added `headset-girl-bg-svg.svg` as decorative background image to home section
-  - Applied CSS filter to transform outline color to match custom primary brand color (#2563eb)
+  - Applied CSS filter to transform outline color to match custom secondary brand color (#FF62AD)
   - Implemented gradient mask with fade-out effects at top (0-15%) and bottom (85-100%)
-  - Set background image opacity to 50% for subtle visual impact without content interference
-  - Positioned image as centered, contained background with proper z-index layering
+  - Set background image opacity to 30% for subtle visual impact without content interference
+  - Added responsive positioning: desktop left-edge alignment (-15% center) and mobile focused view (4% center)
   - Added proper accessibility attributes with `aria-hidden="true"` for decorative element
   - Enhanced home section visual depth while maintaining content readability and focus
+
+- Skills section UI enhancement with interactive tooltips
+  - Refactored skill names from static text labels to hover/click tooltips for cleaner bar graph presentation
+  - Removed skill name text elements below technology icons to reduce visual clutter
+  - Implemented desktop hover tooltips with instant show/hide on technology icons
+  - Added mobile click-to-show tooltips with 3-second auto-hide functionality
+  - Styled tooltips using custom primary brand colors (bg-primary-600) with proper contrast and accessibility
+  - Added smooth tooltip transitions with fade and slide effects for polished user experience
+  - Enhanced touch interaction on mobile devices while maintaining desktop hover functionality
 
 ## [2025-06-28]
 ### [deployment]

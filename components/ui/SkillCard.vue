@@ -79,8 +79,13 @@
             </div>
           </div>
 
-          <!-- Skill Icon -->
-          <div class="skill-icon mt-3 w-8 h-8 flex items-center justify-center">
+          <!-- Skill Icon with Tooltip -->
+          <div 
+            class="skill-icon mt-3 w-8 h-8 flex items-center justify-center relative cursor-pointer"
+            @mouseenter="showTooltip(skill.id)"
+            @mouseleave="hideTooltip(skill.id)"
+            @click="handleMobileTooltip(skill.id)"
+          >
             <img 
               v-if="skill.iconType === 'image' && skill.iconName" 
               :src="getIconPath(skill.iconName)" 
@@ -93,13 +98,18 @@
               class="w-6 h-6 rounded-full"
               :style="{ backgroundColor: getSkillColor(skill) }"
             ></div>
-          </div>
-
-          <!-- Skill Name -->
-          <div class="skill-name mt-2 text-center">
-            <p class="text-xs font-medium text-text-700 dark:text-text-300 truncate max-w-full">
-              {{ skill.name }}
-            </p>
+            
+            <!-- Tooltip -->
+            <Transition name="tooltip">
+              <div
+                v-if="tooltipVisible[skill.id]"
+                class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-primary-50 dark:bg-primary-900/20 text-primary-500 dark:text-primary-200 border border-border-primary-50 dark:border-border-primary-600 whitespace-nowrap z-50 shadow-sm"
+                role="tooltip"
+              >
+                {{ skill.name }}
+                <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-primary-50 dark:border-t-primary-900/20"></div>
+              </div>
+            </Transition>
           </div>
         </div>
       </TransitionGroup>
@@ -128,6 +138,8 @@ const filterTabsRef = ref<HTMLElement | null>(null)
 const showArrows = ref(false)
 const canScrollLeft = ref(false)
 const canScrollRight = ref(false)
+const tooltipVisible = ref<Record<string, boolean>>({})
+const mobileTooltipTimers = ref<Record<string, NodeJS.Timeout>>({})
 
 // Computed properties
 const visibleCategories = computed(() => {
@@ -234,6 +246,40 @@ function animateSkillBars() {
   })
 }
 
+// Tooltip methods
+function showTooltip(skillId: string) {
+  // Show on desktop (hover)
+  if (window.innerWidth >= 1024) {
+    tooltipVisible.value[skillId] = true
+  }
+}
+
+function hideTooltip(skillId: string) {
+  // Hide on desktop (hover out)
+  if (window.innerWidth >= 1024) {
+    tooltipVisible.value[skillId] = false
+  }
+}
+
+function handleMobileTooltip(skillId: string) {
+  // Only handle on mobile (click)
+  if (window.innerWidth < 1024) {
+    // Clear any existing timer for this skill
+    if (mobileTooltipTimers.value[skillId]) {
+      clearTimeout(mobileTooltipTimers.value[skillId])
+    }
+    
+    // Show tooltip
+    tooltipVisible.value[skillId] = true
+    
+    // Set timer to hide after 3 seconds
+    mobileTooltipTimers.value[skillId] = setTimeout(() => {
+      tooltipVisible.value[skillId] = false
+      delete mobileTooltipTimers.value[skillId]
+    }, 3000)
+  }
+}
+
 // Lifecycle
 onMounted(() => {
   // Initialize with first available category
@@ -256,6 +302,10 @@ onMounted(() => {
 // Cleanup on unmount
 onUnmounted(() => {
   window.removeEventListener('resize', checkArrowVisibility)
+  // Clear all mobile tooltip timers
+  Object.values(mobileTooltipTimers.value).forEach(timer => {
+    if (timer) clearTimeout(timer)
+  })
 })
 </script>
 
@@ -274,6 +324,18 @@ onUnmounted(() => {
 
 .skill-bar {
   @apply transition-all duration-500 ease-out;
+}
+
+/* Tooltip animations */
+.tooltip-enter-active,
+.tooltip-leave-active {
+  transition: all 0.2s ease;
+}
+
+.tooltip-enter-from,
+.tooltip-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(5px);
 }
 
 .bar-wrapper:hover .skill-bar {
