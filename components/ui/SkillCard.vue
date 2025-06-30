@@ -52,28 +52,34 @@
 
     <!-- Vertical Bar Graph Grid-->
     <div class="skills-grid flex justify-center items-center flex-1">
-      <TransitionGroup name="skill-fade" tag="div" class="flex justify-center items-end gap-4 overflow-x-auto scrollbar-hide pb-2 w-full h-full">
+      <div class="flex justify-center items-end gap-4 overflow-x-auto scrollbar-hide pb-2 w-full h-full">
         <div
-          v-for="skill in displayedSkills"
+          v-for="(skill, index) in displayedSkills"
           :key="skill.id"
-          class="skill-bar-container flex flex-col items-center flex-shrink-0"
+          class="skill-bar-container flex flex-col items-center flex-shrink-0 transition-all duration-300 ease-out"
+          :class="getContainerAnimationClass(skill.id)"
+          :style="getContainerAnimationStyle(skill.id)"
           @mouseenter="handleSkillHover(skill.id, true)"
           @mouseleave="handleSkillHover(skill.id, false)"
         >
           <!-- Vertical Bar -->
           <div class="bar-wrapper relative h-64 w-8 bg-gray-200 dark:bg-background-700 rounded-lg overflow-hidden">
             <div 
-              class="skill-bar absolute bottom-0 left-0 w-full transition-all duration-500 ease-out rounded-lg"
+              class="skill-bar absolute bottom-0 left-0 w-full rounded-lg transition-all duration-700 ease-out"
               :style="{ 
-                height: `${getBarHeight(skill.id)}%`,
-                backgroundColor: getSkillColor(skill)
+                height: `${getAnimatedBarHeight(skill.id)}%`,
+                backgroundColor: getSkillColor(skill),
+                transitionDelay: getBarFillDelay(index)
               }"
             ></div>
             
             <!-- Percentage Overlay -->
             <div 
               class="percentage-overlay absolute inset-0 flex items-center justify-center text-xs font-bold text-white transition-opacity duration-300"
-              :class="{ 'opacity-100': hoveredSkill === skill.id, 'opacity-0': hoveredSkill !== skill.id }"
+              :class="{ 
+                'opacity-100': hoveredSkill === skill.id && isBarInteractive(skill.id), 
+                'opacity-0': hoveredSkill !== skill.id || !isBarInteractive(skill.id) 
+              }"
             >
               {{ skill.proficiency }}%
             </div>
@@ -81,7 +87,9 @@
 
           <!-- Skill Icon with Tooltip -->
           <div 
-            class="skill-icon mt-3 w-8 h-8 flex items-center justify-center relative cursor-pointer"
+            class="skill-icon mt-3 w-8 h-8 flex items-center justify-center relative transition-all duration-300 ease-out"
+            :class="getIconAnimationClass(skill.id)"
+            :style="getIconAnimationStyle(skill.id)"
             @mouseenter="showTooltip(skill.id)"
             @mouseleave="hideTooltip(skill.id)"
             @click="handleMobileTooltip(skill.id)"
@@ -102,7 +110,7 @@
             <!-- Tooltip -->
             <Transition name="tooltip">
               <div
-                v-if="tooltipVisible[skill.id]"
+                v-if="tooltipVisible[skill.id] && isBarInteractive(skill.id)"
                 class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-primary-50 dark:bg-primary-900/20 text-primary-500 dark:text-primary-200 border border-border-primary-50 dark:border-border-primary-600 whitespace-nowrap z-50 shadow-sm"
                 role="tooltip"
               >
@@ -112,7 +120,7 @@
             </Transition>
           </div>
         </div>
-      </TransitionGroup>
+      </div>
     </div>
   </div>
 </template>
@@ -129,6 +137,17 @@ const {
   getSkillColor 
 } = useSkills()
 
+// Animation stage constants
+const ANIMATION_STAGES = {
+  NOT_STARTED: 'not-started',
+  SLIDING: 'sliding',
+  FADING: 'fading',
+  FILLING: 'filling',
+  COMPLETE: 'complete'
+} as const
+
+type AnimationStage = typeof ANIMATION_STAGES[keyof typeof ANIMATION_STAGES]
+
 // Reactive state
 const activeCategory = ref('frontend')
 const hoveredSkill = ref<string | null>(null)
@@ -140,6 +159,12 @@ const canScrollLeft = ref(false)
 const canScrollRight = ref(false)
 const tooltipVisible = ref<Record<string, boolean>>({})
 const mobileTooltipTimers = ref<Record<string, NodeJS.Timeout>>({})
+
+// Staggered animation state
+const animationStages = ref<Record<string, AnimationStage>>({})
+const animationEnabled = ref(true)
+const animationTimers = ref<Record<string, NodeJS.Timeout>>({})
+const staggerDelay = 300 // milliseconds between each bar animation start
 
 // Computed properties
 const visibleCategories = computed(() => {
@@ -160,10 +185,14 @@ const displayedSkills = computed(() => {
 // Methods
 function setActiveCategory(categoryId: string) {
   activeCategory.value = categoryId
-  // Reset animations for new category
-  animatedHeights.value = {}
-  // Trigger new animations
-  setTimeout(animateSkillBars, 100)
+  // Clear any existing animation timers
+  clearAnimationTimers()
+  // Initialize new animation states
+  setTimeout(() => {
+    initializeAnimationStates()
+    // Start staggered animations for new category
+    setTimeout(startStaggeredAnimation, 100)
+  }, 50)
 }
 
 function getTabClass(categoryId: string) {
@@ -217,33 +246,153 @@ function handleImageError(skillId: string) {
   imageErrors.value.add(skillId)
 }
 
-function getBarHeight(skillId: string) {
+// Animation control functions
+function initializeAnimationStates() {
+  // Reset all animation states
+  animationStages.value = {}
+  animatedHeights.value = {}
+  
+  // Initialize all skills to not started
+  displayedSkills.value.forEach(skill => {
+    animationStages.value[skill.id] = ANIMATION_STAGES.NOT_STARTED
+    animatedHeights.value[skill.id] = 0
+  })
+}
+
+function startStaggeredAnimation() {
+  if (!animationEnabled.value) {
+    // If animations are disabled, set everything to complete immediately
+    displayedSkills.value.forEach(skill => {
+      animationStages.value[skill.id] = ANIMATION_STAGES.COMPLETE
+      animatedHeights.value[skill.id] = skill.proficiency
+    })
+    return
+  }
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) {
+    animationEnabled.value = false
+    startStaggeredAnimation() // Recursive call with animations disabled
+    return
+  }
+
+  // Start staggered animation sequence
+  displayedSkills.value.forEach((skill, index) => {
+    const delay = index * staggerDelay
+    
+    animationTimers.value[skill.id] = setTimeout(() => {
+      animateBarSequence(skill.id, skill.proficiency)
+    }, delay)
+  })
+}
+
+function animateBarSequence(skillId: string, targetHeight: number) {
+  // Start sliding in
+  animationStages.value[skillId] = ANIMATION_STAGES.SLIDING
+  
+  // Fade in after slide starts
+  setTimeout(() => {
+    animationStages.value[skillId] = ANIMATION_STAGES.FADING
+  }, 100)
+  
+  // Start filling after fade completes
+  setTimeout(() => {
+    animationStages.value[skillId] = ANIMATION_STAGES.FILLING
+    animateBarFill(skillId, targetHeight)
+  }, 300)
+  
+  // Mark as complete and interactive
+  setTimeout(() => {
+    animationStages.value[skillId] = ANIMATION_STAGES.COMPLETE
+  }, 1100)
+}
+
+function animateBarFill(skillId: string, targetHeight: number) {
+  let current = 0
+  const duration = 600
+  const steps = 60
+  const increment = targetHeight / steps
+  const stepTime = duration / steps
+
+  const animate = () => {
+    current += increment
+    if (current >= targetHeight) {
+      animatedHeights.value[skillId] = targetHeight
+    } else {
+      animatedHeights.value[skillId] = current
+      setTimeout(animate, stepTime)
+    }
+  }
+  
+  animate()
+}
+
+function clearAnimationTimers() {
+  Object.values(animationTimers.value).forEach(timer => {
+    if (timer) clearTimeout(timer)
+  })
+  animationTimers.value = {}
+}
+
+// Animation state getters
+function getContainerAnimationClass(skillId: string): string {
+  const stage = animationStages.value[skillId]
+  
+  switch (stage) {
+    case ANIMATION_STAGES.NOT_STARTED:
+      return 'translate-x-8 opacity-0'
+    case ANIMATION_STAGES.SLIDING:
+      return 'translate-x-4 opacity-0'
+    case ANIMATION_STAGES.FADING:
+      return 'translate-x-0 opacity-100'
+    case ANIMATION_STAGES.FILLING:
+    case ANIMATION_STAGES.COMPLETE:
+      return 'translate-x-0 opacity-100'
+    default:
+      return 'translate-x-0 opacity-100'
+  }
+}
+
+function getContainerAnimationStyle(skillId: string): Record<string, string> {
+  const stage = animationStages.value[skillId]
+  
+  return {
+    transitionDuration: stage === ANIMATION_STAGES.SLIDING || stage === ANIMATION_STAGES.FADING ? '500ms' : '0ms'
+  }
+}
+
+function getAnimatedBarHeight(skillId: string): number {
   return animatedHeights.value[skillId] || 0
 }
 
-function animateSkillBars() {
-  displayedSkills.value.forEach((skill, index) => {
-    setTimeout(() => {
-      let current = 0
-      const target = skill.proficiency
-      const duration = 800
-      const steps = 60
-      const increment = target / steps
-      const stepTime = duration / steps
+function getBarFillDelay(index: number): string {
+  // Add slight delay for bar fill animation based on stagger
+  return `${(index * staggerDelay) + 400}ms`
+}
 
-      const animate = () => {
-        current += increment
-        if (current >= target) {
-          animatedHeights.value[skill.id] = target
-        } else {
-          animatedHeights.value[skill.id] = current
-          setTimeout(animate, stepTime)
-        }
-      }
-      
-      animate()
-    }, index * 100) // Stagger animations
-  })
+function isBarInteractive(skillId: string): boolean {
+  return animationStages.value[skillId] === ANIMATION_STAGES.COMPLETE
+}
+
+function getIconAnimationClass(skillId: string): string {
+  const stage = animationStages.value[skillId]
+  const isInteractive = stage === ANIMATION_STAGES.COMPLETE
+  
+  return `${isInteractive ? 'cursor-pointer' : 'cursor-default'} ${
+    isInteractive ? 'hover:scale-110' : ''
+  }`
+}
+
+function getIconAnimationStyle(skillId: string): Record<string, string> {
+  const stage = animationStages.value[skillId]
+  const isInteractive = stage === ANIMATION_STAGES.COMPLETE
+  
+  return {
+    opacity: isInteractive ? '1' : '0.7',
+    transform: isInteractive ? 'scale(1)' : 'scale(0.9)',
+    transitionDelay: isInteractive ? '0ms' : '800ms'
+  }
 }
 
 // Tooltip methods
@@ -288,8 +437,11 @@ onMounted(() => {
     activeCategory.value = firstCategory.id
   }
   
-  // Start initial animations
-  setTimeout(animateSkillBars, 300)
+  // Initialize animation states and start animations
+  setTimeout(() => {
+    initializeAnimationStates()
+    setTimeout(startStaggeredAnimation, 100)
+  }, 200)
   
   // Check arrow visibility after component is mounted
   setTimeout(() => {
@@ -302,7 +454,8 @@ onMounted(() => {
 // Cleanup on unmount
 onUnmounted(() => {
   window.removeEventListener('resize', checkArrowVisibility)
-  // Clear all mobile tooltip timers
+  // Clear all timers
+  clearAnimationTimers()
   Object.values(mobileTooltipTimers.value).forEach(timer => {
     if (timer) clearTimeout(timer)
   })
@@ -354,20 +507,20 @@ onUnmounted(() => {
   @apply scale-105;
 }
 
-/* Transition animations for category switching */
-.skill-fade-enter-active,
-.skill-fade-leave-active {
-  transition: all 0.4s ease;
+/* Custom staggered animation styles */
+.skill-bar-container {
+  transform-origin: center;
+  will-change: transform, opacity;
 }
 
-.skill-fade-enter-from,
-.skill-fade-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
+.skill-bar {
+  transform-origin: bottom;
+  will-change: height;
 }
 
-.skill-fade-move {
-  transition: transform 0.4s ease;
+.skill-icon {
+  transform-origin: center;
+  will-change: transform, opacity;
 }
 
 /* Accessibility improvements */
@@ -377,16 +530,20 @@ onUnmounted(() => {
   .skill-bar-container,
   .skill-bar,
   .percentage-overlay,
-  .skill-name {
+  .skill-icon {
     transition: none !important;
     animation: none !important;
-    transform: none !important;
   }
   
-  .skill-fade-enter-active,
-  .skill-fade-leave-active,
-  .skill-fade-move {
-    transition: none !important;
+  /* Ensure bars are immediately visible with no animation */
+  .skill-bar-container {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  .skill-icon {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
 
