@@ -1,19 +1,6 @@
 # TK Stevens Portfolio
 
-A modern, responsive portfolio website built with Nuxt 3, Vue 3, TypeScript, and Tailwind CSS.
-
-## Features
-
-- **Modern Tech Stack**: Built with Nuxt 3, Vue 3, and TypeScript
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Full-Page Scrolling**: Smooth section transitions and navigation
-- **Performance Optimized**: Image optimization, lazy loading, and code splitting
-- **SEO Friendly**: Built-in SEO features and meta tags
-- **Accessible**: WCAG compliant with proper ARIA labels
-- **Dark/Light Mode**: Theme switching capability
-- **Contact Form**: Functional contact form with validation
-- **Project Showcase**: Interactive project gallery with filtering
-- **Skills Visualization**: Animated skill bars and experience timeline
+[Portfolio Site](https://tjstevens-portfolio.netlify.app/)
 
 ## Tech Stack
 
