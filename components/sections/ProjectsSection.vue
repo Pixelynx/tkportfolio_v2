@@ -110,8 +110,12 @@
               <div class="overflow-hidden w-full">
                 <div
                   ref="carouselContainer"
-                  class="flex justify-center transition-transform duration-500 ease-out"
-                  :style="{ transform: `translateX(-${currentSlideIndex * slideWidth}px)` }"
+                  class="flex transition-transform duration-500 ease-out"
+                  :class="desktopCarouselFlexClasses"
+                  :style="{ 
+                    transform: `translateX(-${currentSlideIndex * slideWidth}px)`,
+                    ...desktopCarouselFlexStyle
+                  }"
                 >
                   <div
                     v-for="project in filteredProjects"
@@ -312,6 +316,25 @@ const canScrollLeft = computed(() => currentSlideIndex.value > 0)
 const canScrollRight = computed(() => {
   const lastVisibleIndex = currentSlideIndex.value + visibleProjects.value - 1
   return lastVisibleIndex < filteredProjects.value.length - 1
+})
+
+// Desktop carousel positioning logic
+const desktopCarouselFlexClasses = computed(() => {
+  // If all projects fit within the visible area, center them
+  if (filteredProjects.value.length <= visibleProjects.value) {
+    return 'justify-center';
+  } else {
+    // If there's overflow, align to start
+    return 'justify-start';
+  }
+})
+
+const desktopCarouselFlexStyle = computed(() => {
+  // Only apply max-content width if there are more projects than visible
+  if (filteredProjects.value.length > visibleProjects.value) {
+    return { width: 'max-content' };
+  }
+  return {}; // Let flex handle the width when all projects fit
 })
 
 
