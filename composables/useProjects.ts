@@ -149,7 +149,7 @@ const MOCK_PROJECTS: Project[] = [
     },
     dateCreated: '2024-07-10',
     dateCompleted: '',
-    order: 2
+    order: 4
   },
   {
     id: 'pfn-ecommerce',
@@ -159,7 +159,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'ux',
     status: 'planning',
     featured: true,
-    technologies: ['Figma', ],
+    technologies: ['Figma',],
     images: [
       {
         id: 'pfn-try-on-design',
@@ -215,8 +215,94 @@ const MOCK_PROJECTS: Project[] = [
     },
     dateCreated: '2025-04-27',
     dateCompleted: '',
-    order: 3
+    order: 2
   },
+  {
+    id: 'note-review-scheduler',
+    title: 'Note Review Scheduler',
+    description: 'Intelligent note management system that automatically scans, analyzes, and schedules personalized email reviews of your notes using smart selection algorithms and flexible formatting options for enhanced productivity.',
+    shortDescription: 'AI-powered note scheduling with email automation',
+    category: 'dev',
+    status: 'in-progress',
+    featured: true,
+    technologies: ['Python', 'SQLite', 'Gmail SMTP', 'AES-256', 'Typer CLI', 'Rich UI', 'HTML/CSS', 'Loguru'],
+    images: [
+      {
+        id: 'nrs-hero',
+        url: '/img/proj/nrs/notes-send-terminal-v1.png',
+        alt: 'Note Review Scheduler CLI Setup',
+        type: 'hero',
+        width: 800,
+        height: 600
+      },
+      {
+        id: 'nrs-email-styled',
+        url: '/img/proj/nrs/notes-send-email-embed-STYLED.png',
+        alt: 'Email Format Examples (Plain, Bionic, Styled)',
+        type: 'gallery',
+        width: 800,
+        height: 600
+      },
+      {
+        id: 'nrs-email-bionic',
+        url: '/img/proj/nrs/notes-send-email-embed-BIONIC.png',
+        alt: 'Email Format Examples (Plain, Bionic, Styled)',
+        type: 'gallery',
+        width: 800,
+        height: 600
+      },
+      {
+        id: 'nrs-terminal',
+        url: '/img/proj/nrs/config-setup-terminal-v1.png',
+        alt: 'Cross-Platform Terminal Interface',
+        type: 'gallery',
+        width: 800,
+        height: 600
+      }
+    ],
+    links: [
+      {
+        type: 'code',
+        url: 'https://github.com/Pixelynx/note_review_scheduler',
+        label: 'GitHub'
+      }
+    ],
+    details: {
+      overview: 'Note Review Scheduler automates the process of staying engaged with your notes by intelligently selecting and formatting relevant content for scheduled email reviews. Features include multi-format note parsing, smart content analysis, and secure credential management.',
+      challenges: [
+        'Creating cross-platform CLI compatibility across Windows terminals (PowerShell, Command Prompt, Git Bash)',
+        'Implementing secure credential storage with military-grade encryption',
+        'Designing flexible text formatting system supporting accessibility needs (Bionic reading for ADHD)',
+        'Building Gmail attachment compatibility across different email clients'
+      ],
+      solutions: [
+        'Developed adaptive terminal detection with fallback mechanisms for password input across platforms',
+        'Implemented AES-256 encryption with PBKDF2 key derivation (100,000 iterations) for credential protection',
+        'Created modular formatting pipeline with markdown cleaning and multiple output styles',
+        'Built Gmail-friendly inline CSS system with embedded content options for better compatibility'
+      ],
+      architecture: 'Python CLI application with SQLite database, encrypted configuration management, Gmail SMTP integration, and modular text processing pipeline supporting multiple note formats',
+      features: [
+        'Interactive setup wizard with comprehensive input validation',
+        'Multi-format note support (Markdown, Org-mode, Plain Text)',
+        'Smart selection algorithm with content analysis and freshness tracking',
+        'Flexible email formatting (Plain, Bionic reading, Styled hierarchy)',
+        'Gmail integration with rate limiting and retry logic',
+        'Military-grade AES-256 credential encryption',
+        'Cross-platform terminal compatibility',
+        'Automated scheduling with graceful shutdown handling'
+      ],
+      lessons: [
+        'Advanced cross-platform CLI development and terminal compatibility',
+        'Implementing robust encryption and secure credential management',
+        'Designing accessible text formatting for different user needs',
+        'Building email client compatibility with HTML/CSS limitations'
+      ]
+    },
+    dateCreated: '2025-06-22',
+    dateCompleted: '',
+    order: 3
+  }
 ]
 
 export const useProjects = () => {
